@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   MAGID FINANCIAL SERVICES — DESIGN SYSTEM
+   Single source of truth for color, type, spacing and motion.
+   Every page in this site must consume these tokens; do not hard-code hex
+   values in components. See DESIGN_SYSTEM.md for usage rules.
+   ========================================================================= */
+
+@theme {
+  /* --- Surfaces: deep navy ramp ------------------------------------- */
+  --color-navy-950: #060a12; /* deepest — footer                        */
+  --color-navy-900: #0a0f1a; /* BASE page background (brand spec)       */
+  --color-navy-850: #0e1524; /* raised band — alternating sections      */
+  --color-navy-800: #131c2e; /* card surface                            */
+  --color-navy-700: #1b2739; /* card hover / elevated                   */
+  --color-navy-600: #253349; /* hairline-adjacent, dividers             */
+
+  /* --- Accent: gold -------------------------------------------------- */
+  --color-gold-300: #efdda6;
+  --color-gold-400: #e2c877;
+  --color-gold-500: #c9a84c; /* PRIMARY ACCENT (brand spec)             */
+  --color-gold-600: #a8873a;
+  --color-gold-700: #856a2b;
+
+  /* --- Ink: text on dark --------------------------------------------- */
+  --color-ink-50: #f6f8fb; /* headings                                  */
+  --color-ink-200: #ccd5e2; /* high-emphasis body                       */
+  --color-ink-300: #a4b0c2; /* body copy                                */
+  --color-ink-400: #7b8799; /* muted / captions                         */
+
+  /* --- Typography ----------------------------------------------------- */
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+
+  /* --- Motion --------------------------------------------------------- */
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* --- Layout --------------------------------------------------------- */
+  --spacing-section: 6rem; /* vertical rhythm between page sections      */
+}
+
+/* =========================================================================
+   BASE
+   ========================================================================= */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keeps in-page anchors clear of the sticky header. */
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-navy-900);
+    color: var(--color-ink-300);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink-50);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-gold-500) 35%, transparent);
+    color: var(--color-ink-50);
+  }
+
+  /* A single, consistent focus treatment across the whole site. */
+  :focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* =========================================================================
+   UTILITIES
+   ========================================================================= */
+
+/* Small-caps eyebrow label that sits above section headings. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold-500);
+}
+
+/* Hairline border used for cards and section seams. */
+@utility hairline {
+  border: 1px solid color-mix(in srgb, var(--color-ink-50) 8%, transparent);
+}
+
+@utility hairline-t {
+  border-top: 1px solid color-mix(in srgb, var(--color-ink-50) 8%, transparent);
+}
+
+@utility hairline-b {
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--color-ink-50) 8%, transparent);
+}
+
+/* Warm radial wash used behind the hero and the closing CTA. */
+@utility gold-wash {
+  background-image: radial-gradient(
+    60% 70% at 50% 0%,
+    color-mix(in srgb, var(--color-gold-500) 14%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+/* Faint engraved grid — reads as banknote/ledger texture, not decoration. */
+@utility ledger-grid {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-ink-50) 3%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-ink-50) 3%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+}
+
+/* =========================================================================
+   MOTION SAFETY NET
+
+   Scroll reveals rest at opacity: 0 until their animation runs. If motion is
+   suppressed, that resting state must not be what the visitor sees — so pin
+   every reveal to its final state. `!important` is deliberate: it has to beat
+   the inline styles the animation library writes.
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
