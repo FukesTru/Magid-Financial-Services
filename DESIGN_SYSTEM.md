@@ -129,6 +129,52 @@ do not introduce an icon library, and do not mix in filled icons.
 
 ---
 
+## 4b. Photography
+
+Photography is **optional and additive**. Every slot in `src/lib/images.ts`
+defaults to `null`, and a null slot renders its section exactly as the
+photo-free design does — so the site is never half-dressed.
+
+Two treatments, both in `ui/Photo.tsx`:
+
+| Component       | Use                                                                 |
+| --------------- | -------------------------------------------------------------------- |
+| `PhotoBackdrop` | Atmosphere behind a dark section (hero, closing CTA)                  |
+| `PhotoFrame`    | A photo that carries meaning (the About portrait) — stays fully legible |
+
+**The backdrop is anchored right and masked out to the left.** That is
+deliberate, and it is the rule to preserve if you change it: darkening a
+full-bleed photo enough to be safe under a headline leaves the photo
+invisible (an early version landed at ~4% effective visibility), so instead
+the photo lives on the empty side of the section and the text column keeps
+near-solid navy beneath it.
+
+Measured against a deliberately near-white test image — the worst case a real
+photograph can present — the ground directly under the hero text column
+yields:
+
+| Text            | Contrast   | WCAG AA needs |
+| --------------- | ---------- | ------------- |
+| Headline `ink-50`   | 12.16:1 | 3.0:1         |
+| Tagline `gold-400`  | 7.86:1  | 3.0:1         |
+| Body `ink-300`      | 5.90:1  | 4.5:1         |
+
+If you retune the opacity or overlays, re-measure. Do not ship a backdrop
+whose text band drops below 4.5:1 for body copy.
+
+**Rules**
+
+- Every photo needs `alt`. Decorative backgrounds take `alt: ""` so screen
+  readers skip them rather than announcing a filename.
+- Only the hero backdrop gets `priority` — it is the LCP element. Everything
+  else lazy-loads.
+- Unsplash photos must credit the photographer. Credits declared on the slot
+  are collected and rendered once in the footer by `photoCredits()`.
+- `images.unsplash.com` is allow-listed in `next.config.ts`. Self-hosted files
+  in `public/images/` need no entry.
+
+---
+
 ## 5. Motion
 
 All scroll animation goes through `ui/Reveal` (Framer Motion). Defaults:

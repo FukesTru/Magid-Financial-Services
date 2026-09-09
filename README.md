@@ -72,7 +72,11 @@ code:
    `/services/[slug]` pages currently render the `ComingSoon` shell so that no
    homepage link 404s. Replace each as the page is designed, then delete
    `src/components/site/ComingSoon.tsx`.
-3. **Social profiles** — the client has not supplied any. Add them to
+3. **Photography** — every slot in `src/lib/images.ts` is `null`, so the site
+   currently renders without photos (which is a complete design, not a broken
+   one). Fill a slot to switch photography on for that section; the file
+   documents the shape and both the hotlink and self-hosted options.
+4. **Social profiles** — the client has not supplied any. Add them to
    `site.socials` in `src/lib/site.ts` and they appear in the footer and in the
    `sameAs` property of the structured data automatically.
 

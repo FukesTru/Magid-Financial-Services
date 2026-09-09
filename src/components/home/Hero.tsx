@@ -2,11 +2,18 @@ import { ArrowIcon, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GoldRule } from "@/components/ui/GoldRule";
 import { Reveal } from "@/components/ui/Reveal";
+import { photos } from "@/lib/images";
+import { PhotoBackdrop } from "@/components/ui/Photo";
 import { site } from "@/lib/site";
 
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-900 pt-32 pb-20 sm:pt-40 sm:pb-28 lg:min-h-[92svh] lg:pt-48 lg:pb-32">
+      {/* Optional photographic depth, sunk beneath the grid and gold wash. */}
+      {photos.heroBackground && (
+        <PhotoBackdrop photo={photos.heroBackground} priority />
+      )}
+
       {/* Layered ground: engraved ledger grid under a warm gold wash. */}
       <div
         aria-hidden="true"

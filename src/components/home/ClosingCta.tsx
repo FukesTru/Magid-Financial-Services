@@ -2,6 +2,8 @@ import { ArrowIcon, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GoldRule } from "@/components/ui/GoldRule";
 import { Reveal } from "@/components/ui/Reveal";
+import { photos } from "@/lib/images";
+import { PhotoBackdrop } from "@/components/ui/Photo";
 import { site } from "@/lib/site";
 
 export function ClosingCta() {
@@ -10,6 +12,8 @@ export function ClosingCta() {
       aria-labelledby="cta-heading"
       className="relative isolate overflow-hidden border-t border-white/8 bg-navy-950 py-24 sm:py-28 lg:py-32"
     >
+      {photos.ctaBackground && <PhotoBackdrop photo={photos.ctaBackground} />}
+
       <div
         aria-hidden="true"
         className="ledger-grid absolute inset-0 -z-20 opacity-60 [mask-image:radial-gradient(60%_70%_at_50%_100%,black,transparent)]"

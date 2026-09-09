@@ -3,6 +3,8 @@ import { ArrowIcon } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { photos } from "@/lib/images";
+import { PhotoFrame } from "@/components/ui/Photo";
 import { site, yearsInBusiness } from "@/lib/site";
 
 export function AboutPreview() {
@@ -22,6 +24,16 @@ export function AboutPreview() {
               }
             />
           </Reveal>
+
+          {photos.aboutPortrait && (
+            <Reveal delay={0.14}>
+              <PhotoFrame
+                photo={photos.aboutPortrait}
+                className="mt-10 aspect-4/5 w-full max-w-sm"
+                sizes="(min-width: 1024px) 34vw, 100vw"
+              />
+            </Reveal>
+          )}
         </div>
 
         <div className="lg:col-span-7">

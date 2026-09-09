@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { photoCredits } from "@/lib/images";
 import { primaryNav, services, site } from "@/lib/site";
 import { Wordmark } from "./Wordmark";
 
@@ -10,6 +11,7 @@ import { Wordmark } from "./Wordmark";
 export function SiteFooter() {
   const year = new Date().getFullYear();
   const { address } = site;
+  const credits = photoCredits();
 
   return (
     <footer className="border-t border-white/8 bg-navy-950">
@@ -127,6 +129,38 @@ export function SiteFooter() {
             Serving clients in all 50 states since {site.foundedYear}.
           </p>
         </div>
+
+        {/* The Unsplash License asks that photographers be credited wherever
+            their work is used. Collected here so the credit is given once,
+            without cluttering the sections the photos appear in. */}
+        {credits.length > 0 && (
+          <p className="mt-6 text-xs text-ink-400">
+            Photography by{" "}
+            {credits.map((credit, i) => (
+              <span key={credit.url}>
+                {i > 0 && (i === credits.length - 1 ? " and " : ", ")}
+                <a
+                  href={credit.url}
+                  rel="noopener noreferrer nofollow"
+                  target="_blank"
+                  className="underline decoration-white/20 underline-offset-2 transition-colors hover:text-gold-400"
+                >
+                  {credit.name}
+                </a>
+              </span>
+            ))}{" "}
+            on{" "}
+            <a
+              href="https://unsplash.com"
+              rel="noopener noreferrer nofollow"
+              target="_blank"
+              className="underline decoration-white/20 underline-offset-2 transition-colors hover:text-gold-400"
+            >
+              Unsplash
+            </a>
+            .
+          </p>
+        )}
       </Container>
     </footer>
   );
