@@ -8,7 +8,9 @@ import Script from "next/script";
  * nothing is loaded, so no requests go out and no cookies are set.
  */
 export function Analytics() {
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  // Trimmed so a blank or whitespace-only value counts as "not configured"
+  // rather than injecting a script tag with a broken measurement ID.
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
 
   if (!gaId) return null;
 

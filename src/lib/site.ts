@@ -5,6 +5,33 @@
  * contact details and the services list can never drift between pages.
  */
 
+const DEFAULT_SITE_URL = "https://i-mfs.com";
+
+/**
+ * Resolve the canonical origin from NEXT_PUBLIC_SITE_URL.
+ *
+ * The variable is optional, but a host that defines it as an *empty* or
+ * malformed value must not be able to take the build down. `metadataBase`
+ * runs `new URL()` on this during module evaluation, and `new URL("")`
+ * throws — which fails the whole build, not just one page. So anything
+ * blank or unparseable is treated as "not set" and falls back.
+ *
+ * A bare domain ("i-mfs.com") is accepted and assumed to be https. The
+ * result is normalised to an origin, so it never carries a trailing slash
+ * for the `${site.url}/path` templates elsewhere to double up on.
+ */
+function resolveSiteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return DEFAULT_SITE_URL;
+
+  const candidate = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+  try {
+    return new URL(candidate).origin;
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+}
+
 export const site = {
   name: "Magid Financial Services",
   shortName: "Magid Financial",
@@ -12,10 +39,10 @@ export const site = {
     "Expert Solutions for Your Payroll and Tax Needs—Maximizing Your Success, Minimizing Your Stress",
   foundedYear: 1989,
   /**
-   * Canonical origin. Override per-environment with NEXT_PUBLIC_SITE_URL if the
-   * client moves to a new domain before launch.
+   * Canonical origin, with no trailing slash. Override per-environment with
+   * NEXT_PUBLIC_SITE_URL if the client moves to a new domain before launch.
    */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://i-mfs.com",
+  url: resolveSiteUrl(),
   phone: {
     display: "(215) 676-7999",
     /** E.164, for tel: links and schema.org. */
