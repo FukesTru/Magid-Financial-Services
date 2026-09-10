@@ -11,7 +11,7 @@ export function Hero() {
     <section className="relative isolate overflow-hidden bg-navy-900 pt-32 pb-20 sm:pt-40 sm:pb-28 lg:min-h-[92svh] lg:pt-48 lg:pb-32">
       {/* Optional photographic depth, sunk beneath the grid and gold wash. */}
       {photos.heroBackground && (
-        <PhotoBackdrop photo={photos.heroBackground} priority />
+        <PhotoBackdrop photo={photos.heroBackground} preload />
       )}
 
       {/* Layered ground: engraved ledger grid under a warm gold wash. */}

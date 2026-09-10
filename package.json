@@ -9,7 +9,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "photos:sync": "node scripts/sync-unsplash.mjs"
   },
   "dependencies": {
     "framer-motion": "^13.2.0",

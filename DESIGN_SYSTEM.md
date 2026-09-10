@@ -111,6 +111,7 @@ body copy.
 | `ui/Reveal`                     | Scroll-triggered fade-up — see Motion below                     |
 | `ui/Accordion`                  | Single-open, accessible disclosure list                         |
 | `ui/ServiceIcon`                | The 24px stroke icon set                                        |
+| `ui/Photo`                      | `PhotoBackdrop`, `PhotoFrame`, `CardPhoto` — see 4b              |
 | `site/SiteHeader` / `SiteFooter`| Site chrome, rendered once from the root layout                 |
 | `site/Wordmark`                 | The brand lockup. Never re-typeset it inline                    |
 | `site/FloatingCallButton`       | Mobile "Call Now", appears past 520px of scroll                 |
@@ -131,16 +132,19 @@ do not introduce an icon library, and do not mix in filled icons.
 
 ## 4b. Photography
 
-Photography is **optional and additive**. Every slot in `src/lib/images.ts`
-defaults to `null`, and a null slot renders its section exactly as the
-photo-free design does — so the site is never half-dressed.
+Photography is **optional and additive**. Slots are resolved from Unsplash by
+`npm run photos:sync` into `src/lib/photo-manifest.json` and read back through
+`src/lib/images.ts`; any slot the manifest does not fill is `null`, and a null
+slot renders its section exactly as the photo-free design does — so the site is
+never half-dressed. See the Photography section of the README for the workflow.
 
-Two treatments, both in `ui/Photo.tsx`:
+Three treatments, all in `ui/Photo.tsx`:
 
 | Component       | Use                                                                 |
 | --------------- | -------------------------------------------------------------------- |
 | `PhotoBackdrop` | Atmosphere behind a dark section (hero, closing CTA)                  |
 | `PhotoFrame`    | A photo that carries meaning (the About portrait) — stays fully legible |
+| `CardPhoto`     | The photo band across the top of a service card                       |
 
 **The backdrop is anchored right and masked out to the left.** That is
 deliberate, and it is the rule to preserve if you change it: darkening a
@@ -167,13 +171,35 @@ body 6.31:1 — the section's own ledger grid and gold wash carry it.
 If you retune the opacity or overlays, re-measure. Do not ship a backdrop
 whose text band drops below 4.5:1 for body copy.
 
+**Card photos are texture, not subject.** Twelve photographs in one grid is a
+lot of competing subject matter, so `CardPhoto` holds each one at 50% opacity
+under a navy tint and dissolves its bottom edge into the card's own surface —
+there is no seam between photo and copy, and what the card is *about* stays the
+gold glyph and the heading beneath it. The photo comes forward on hover (to
+75%, with a slight scale), which is what gives the existing card hover
+something to do beyond a background shift.
+
+Because the band runs edge to edge, the card's padding sits on an inner wrapper
+rather than on the link itself. A card with no photo is unaffected by that:
+with an empty manifest the grid renders pixel-for-pixel identically to the
+pre-photography build.
+
 **Rules**
 
-- Every photo needs `alt`. Decorative backgrounds take `alt: ""` so screen
-  readers skip them rather than announcing a filename.
-- Only the hero backdrop gets `priority` — it is the LCP element. Everything
-  else lazy-loads.
-- Unsplash photos must credit the photographer. Credits declared on the slot
+- Every photo needs `alt`. Decorative photos — both backdrops and every card
+  photo — take `alt: ""` so screen readers skip them rather than repeating a
+  heading the card already states. The About portrait is the exception and
+  needs real, hand-written alt text.
+- Only the hero backdrop gets `preload` — it is the LCP element. Everything
+  else lazy-loads. Note `preload` replaced `priority` in Next 16, and it must
+  not be combined with `loading`: next/image throws if both are set.
+- `quality` values must appear in `images.qualities` in `next.config.ts`
+  (currently `[75, 80]`). Next 16 requires that allow-list; an unlisted value
+  is silently rounded to the nearest listed one.
+- Remote photos need a `blurDataURL` to blur up — next/image cannot derive one
+  for a URL it has not fetched. The sync script supplies it as a one-pixel PNG
+  of the photo's dominant colour.
+- Unsplash photos must credit the photographer. Credits recorded on the slot
   are collected and rendered once in the footer by `photoCredits()`.
 - `images.unsplash.com` is allow-listed in `next.config.ts`. Self-hosted files
   in `public/images/` need no entry.

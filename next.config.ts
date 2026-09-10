@@ -14,6 +14,16 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+
+    /**
+     * Quality levels the optimiser will serve. Next 16 requires this to be an
+     * allow-list — an unlisted value is rounded to the nearest listed one and
+     * warned about in development, rather than honoured — so both values the
+     * site actually asks for have to appear here: 75 for photography that
+     * sits behind text, 80 for the About portrait, which is meant to be looked
+     * at. Keep the list short; every entry is another variant to cache.
+     */
+    qualities: [75, 80],
   },
 };
 
