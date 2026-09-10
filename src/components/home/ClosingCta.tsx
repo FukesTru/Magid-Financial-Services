@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { ArrowIcon, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GoldRule } from "@/components/ui/GoldRule";
@@ -6,7 +7,27 @@ import { photos } from "@/lib/images";
 import { PhotoBackdrop } from "@/components/ui/Photo";
 import { site } from "@/lib/site";
 
-export function ClosingCta() {
+/**
+ * The closing call to action.
+ *
+ * Every page ends on this band, so it takes its copy as props rather than
+ * being cloned per page — one treatment, one set of overlays, one place to
+ * retune the contrast measurements recorded in DESIGN_SYSTEM.md. The defaults
+ * are the homepage's wording.
+ */
+export function ClosingCta({
+  eyebrow = "Ready when you are",
+  title = (
+    <>Let&rsquo;s sort it out before the next deadline</>
+  ),
+  body = "Tell us what you are dealing with — a return, a payroll schedule, a letter you would rather not open. The first conversation is free, and you will leave it knowing exactly what comes next.",
+  action = "Book Your Free Consultation",
+}: {
+  eyebrow?: string;
+  title?: ReactNode;
+  body?: ReactNode;
+  action?: string;
+} = {}) {
   return (
     <section
       aria-labelledby="cta-heading"
@@ -26,24 +47,21 @@ export function ClosingCta() {
       <Container>
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">Ready when you are</p>
+            <p className="eyebrow">{eyebrow}</p>
             <h2
               id="cta-heading"
               className="mt-5 font-display text-3xl leading-[1.15] font-medium sm:text-4xl lg:text-5xl"
             >
-              Let&rsquo;s sort it out before the next deadline
+              {title}
             </h2>
             <GoldRule align="center" className="mt-7" />
             <p className="mt-7 text-base leading-relaxed text-ink-300 sm:text-lg">
-              Tell us what you are dealing with &mdash; a return, a payroll
-              schedule, a letter you would rather not open. The first
-              conversation is free, and you will leave it knowing exactly what
-              comes next.
+              {body}
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <ButtonLink href="/contact" variant="gold" size="lg">
-                Book Your Free Consultation
+                {action}
                 <ArrowIcon />
               </ButtonLink>
               <ButtonLink href={site.phone.href} variant="quiet" size="lg">

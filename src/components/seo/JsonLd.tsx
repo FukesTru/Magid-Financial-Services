@@ -1,4 +1,4 @@
-import { faqs, services, site } from "@/lib/site";
+import { faqs, services, site, type ServiceEntry } from "@/lib/site";
 import { usStates } from "@/lib/us-states";
 
 /** Stable @id so other schema blocks can reference the same organization. */
@@ -87,4 +87,74 @@ export function OrganizationJsonLd() {
 /** FAQ schema. Render only on pages that actually display these questions. */
 export function FaqJsonLd() {
   return <Block data={faqPage} />;
+}
+
+/**
+ * Per-service schema, plus the breadcrumb trail the page displays.
+ *
+ * The service is tied back to the organization by `@id` rather than repeating
+ * the business details, so there is one organization in the graph however many
+ * service pages a crawler visits.
+ */
+export function ServiceJsonLd({
+  service,
+  description,
+}: {
+  service: ServiceEntry;
+  description: string;
+}) {
+  const url = `${site.url}/services/${service.slug}`;
+
+  return (
+    <>
+      <Block
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": `${url}#service`,
+          name: service.name,
+          description,
+          url,
+          serviceType: service.name,
+          provider: { "@id": orgId },
+          areaServed: { "@type": "Country", name: "United States" },
+        }}
+      />
+      <Block
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: `${site.url}/` },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Services",
+              item: `${site.url}/services`,
+            },
+            { "@type": "ListItem", position: 3, name: service.name, item: url },
+          ],
+        }}
+      />
+    </>
+  );
+}
+
+/**
+ * Contact page schema. Kept separate from the organization block so the
+ * business details are still stated once, by reference.
+ */
+export function ContactJsonLd() {
+  return (
+    <Block
+      data={{
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "@id": `${site.url}/contact#page`,
+        url: `${site.url}/contact`,
+        name: `Contact ${site.name}`,
+        mainEntity: { "@id": orgId },
+      }}
+    />
+  );
 }

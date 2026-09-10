@@ -62,6 +62,14 @@ export const site = {
    * render automatically in the footer; leave empty and the block is omitted.
    */
   socials: [] as { label: string; href: string }[],
+  /**
+   * Office hours — not supplied by the client, and deliberately not guessed.
+   * A tax practice keeps different hours in February than in July, and
+   * publishing the wrong ones sends someone to a locked door. While this is
+   * null the contact page says to call for current hours; fill it in and the
+   * page renders the table instead.
+   */
+  hours: null as readonly { days: string; hours: string }[] | null,
 } as const;
 
 export const yearsInBusiness = new Date().getFullYear() - site.foundedYear;
@@ -80,6 +88,31 @@ export const primaryNav = [
 /* ------------------------------------------------------------------------ */
 /* Services                                                                  */
 /* ------------------------------------------------------------------------ */
+
+/**
+ * Services are grouped three ways on the services index and in the navbar
+ * dropdown. Twelve flat items is a list; three groups of four is a menu
+ * someone can actually scan.
+ */
+export const serviceCategories = [
+  {
+    id: "individuals",
+    label: "Individuals & Families",
+    blurb: "Returns, filings and year-round planning for you and your household.",
+  },
+  {
+    id: "business",
+    label: "Businesses",
+    blurb: "Books, payroll and filings for owners who would rather run the business.",
+  },
+  {
+    id: "resolution",
+    label: "Tax Relief & Resolution",
+    blurb: "When something has already gone wrong — notices, audits, arrears.",
+  },
+] as const;
+
+export type ServiceCategory = (typeof serviceCategories)[number]["id"];
 
 export type IconName =
   | "document"
@@ -101,15 +134,24 @@ export type Service = {
   /** One line, used on the homepage services grid. */
   summary: string;
   icon: IconName;
+  category: ServiceCategory;
 };
 
-export const services: Service[] = [
+/**
+ * `as const satisfies` rather than a plain annotation: it keeps the slugs as
+ * literal types, which is what lets `ServiceSlug` below be a real union. That
+ * union is then the key of the page-content record in `service-content.ts`, so
+ * adding a service here without writing its page content is a compile error
+ * rather than a blank page discovered in production.
+ */
+export const services = [
   {
     slug: "tax-preparation",
     name: "Tax Preparation",
     summary:
       "Accurate individual and family returns prepared, reviewed, and filed by a professional.",
     icon: "document",
+    category: "individuals",
   },
   {
     slug: "accounting-services",
@@ -117,6 +159,7 @@ export const services: Service[] = [
     summary:
       "Bookkeeping, reconciliations, and financial statements that keep your records audit-ready.",
     icon: "ledger",
+    category: "business",
   },
   {
     slug: "business-tax-services",
@@ -124,6 +167,7 @@ export const services: Service[] = [
     summary:
       "Filings for LLCs, S-corps, partnerships, and corporations, handled end to end.",
     icon: "building",
+    category: "business",
   },
   {
     slug: "income-tax-return-filing",
@@ -131,6 +175,7 @@ export const services: Service[] = [
     summary:
       "Electronic federal and state filing with confirmation and refund tracking.",
     icon: "receipt",
+    category: "individuals",
   },
   {
     slug: "payroll-support",
@@ -138,6 +183,7 @@ export const services: Service[] = [
     summary:
       "Payroll runs, deposits, and quarterly filings managed on schedule, every cycle.",
     icon: "payroll",
+    category: "business",
   },
   {
     slug: "tax-planning",
@@ -145,6 +191,7 @@ export const services: Service[] = [
     summary:
       "Year-round strategy that positions you for a lower bill before the deadline arrives.",
     icon: "chart",
+    category: "individuals",
   },
   {
     slug: "tax-problem-consulting",
@@ -152,6 +199,7 @@ export const services: Service[] = [
     summary:
       "Back taxes, notices, liens, and penalties reviewed and worked toward a resolution.",
     icon: "lifebuoy",
+    category: "resolution",
   },
   {
     slug: "irs-audit-representation",
@@ -159,6 +207,7 @@ export const services: Service[] = [
     summary:
       "We correspond with the IRS on your behalf and stand with you through the audit.",
     icon: "shield",
+    category: "resolution",
   },
   {
     slug: "new-business-tax-consulting",
@@ -166,6 +215,7 @@ export const services: Service[] = [
     summary:
       "Entity selection, registrations, and a tax setup your new venture can grow into.",
     icon: "seedling",
+    category: "business",
   },
   {
     slug: "local-tax-return-preparation",
@@ -173,6 +223,7 @@ export const services: Service[] = [
     summary:
       "Pennsylvania municipal and school district returns prepared alongside your federal filing.",
     icon: "pin",
+    category: "individuals",
   },
   {
     slug: "loan-modifications",
@@ -180,6 +231,7 @@ export const services: Service[] = [
     summary:
       "Documentation and financial packages assembled to support a modification request.",
     icon: "house",
+    category: "resolution",
   },
   {
     slug: "debt-settlement",
@@ -187,13 +239,39 @@ export const services: Service[] = [
     summary:
       "A clear-eyed look at what you owe and a negotiated path toward settling it.",
     icon: "scales",
+    category: "resolution",
   },
-];
+] as const satisfies readonly Service[];
+
+/**
+ * One entry of the `services` array, with its slug still a literal type.
+ *
+ * Accessors below return this rather than the wider `Service`, so a slug taken
+ * from the list can index `serviceContent` directly. `Service` remains the
+ * shape to annotate against; this is the shape you actually get back.
+ */
+export type ServiceEntry = (typeof services)[number];
+
+export type ServiceSlug = ServiceEntry["slug"];
 
 export const serviceSlugs = services.map((s) => s.slug);
 
-export function getService(slug: string): Service | undefined {
+/**
+ * Narrow an arbitrary string — a route param, a form field — to a known slug.
+ * `serviceSlugs.includes()` cannot do this job: the array's element type is
+ * the literal union, so it refuses a plain `string` argument outright.
+ */
+export function isServiceSlug(value: string): value is ServiceSlug {
+  return (serviceSlugs as readonly string[]).includes(value);
+}
+
+export function getService(slug: string): ServiceEntry | undefined {
   return services.find((s) => s.slug === slug);
+}
+
+/** The services in one category, in the order they are declared above. */
+export function servicesInCategory(category: ServiceCategory): ServiceEntry[] {
+  return services.filter((s) => s.category === category);
 }
 
 /* ------------------------------------------------------------------------ */

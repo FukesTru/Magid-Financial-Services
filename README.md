@@ -28,6 +28,9 @@ npm run dev                  # http://localhost:3000
 | ------------------------------- | -------- | --------------------------------------------------------------------------------------- |
 | `NEXT_PUBLIC_SITE_URL`          | no       | Canonical origin. Defaults to `https://i-mfs.com`. **Change this if the client launches on a different domain** — canonical tags, Open Graph URLs, the sitemap and structured data all derive from it. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | no       | GA4 measurement ID (`G-XXXXXXXXXX`). While unset, no analytics script loads and no cookies are set. |
+| `RESEND_API_KEY`                | no       | Turns on server-side delivery for the contact form. Without it the form composes the enquiry in the visitor's own email app instead — it never accepts a message it cannot deliver. |
+| `CONTACT_FROM_EMAIL`            | no       | Sender address on a domain verified with the provider. Required alongside `RESEND_API_KEY`. |
+| `CONTACT_TO_EMAIL`              | no       | Where enquiries land. Defaults to the address published on the site. |
 | `UNSPLASH_ACCESS_KEY`           | no       | Build-time only, and only for `npm run photos:sync`. Never bundled, never sent to the browser; deployments do not need it. |
 
 ## Project structure
@@ -40,14 +43,20 @@ src/
     globals.css           Design tokens (@theme) + base layer + utilities
     opengraph-image.tsx   Build-time OG card (1200×630)
     sitemap.ts robots.ts  Generated /sitemap.xml and /robots.txt
-    about/ services/ contact/   Placeholder routes (see below)
+    about/                About the practice
+    services/             Services index
+    services/[slug]/      One page per service, prerendered from lib/site.ts
+    contact/              Contact page, enquiry form and its server action
   components/
     home/                 The eight homepage sections
-    site/                 Header, footer, wordmark, floating call button
+    site/                 Header (with the services dropdown), footer, page hero
+    contact/              The enquiry form
     ui/                   Design-system primitives shared by every page
     seo/                  JSON-LD blocks and the GA4 tag
   lib/
     site.ts               Business facts, nav, the 12 services, value props, FAQs
+    service-content.ts    Long-form copy for the twelve service pages
+    contact.ts            Enquiry validation and delivery
     us-states.ts          State list for `areaServed` in structured data
     images.ts             Reads the photo manifest into typed, null-safe slots
     photo-manifest.json   Generated — the resolved photos themselves
@@ -66,25 +75,30 @@ See **[DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)**. The homepage establishes the
 tokens, type scale, layout rules, motion behaviour and SEO conventions that
 every later page must follow.
 
-## Placeholder content to replace
+## Content the client still needs to supply
 
-Three things are deliberately unfinished, each marked with a comment in the
-code:
+Five things are deliberately blank rather than guessed. Each degrades to
+something sensible, and each is marked with a comment where it lives:
 
 1. **Testimonials** — `src/components/home/Testimonials.tsx` renders a
    "reviews pending" state because no client reviews have been collected.
    Paste verified quotes into the `testimonials` array and the section switches
    to real quote cards on its own. Do not invent testimonials.
-2. **Routes for pages 2..N** — `/about`, `/services`, `/contact` and the twelve
-   `/services/[slug]` pages currently render the `ComingSoon` shell so that no
-   homepage link 404s. Replace each as the page is designed, then delete
-   `src/components/site/ComingSoon.tsx`.
-3. **Photography** — the manifest is empty, so the site currently renders
-   without photos (which is a complete design, not a broken one). Run
-   `npm run photos:sync` to fill it — see [Photography](#photography) below.
-4. **Social profiles** — the client has not supplied any. Add them to
-   `site.socials` in `src/lib/site.ts` and they appear in the footer and in the
-   `sameAs` property of the structured data automatically.
+2. **Photography** — the manifest is empty, so the site renders without photos
+   (which is a complete design, not a broken one). Run `npm run photos:sync` to
+   fill it — see [Photography](#photography) below.
+3. **Office hours** — `site.hours` is `null`, so the contact page tells visitors
+   to call for current hours. A tax practice keeps different hours in February
+   than in July and publishing the wrong ones sends someone to a locked door.
+   Fill in the array and the page renders the table instead.
+4. **Social profiles** — none supplied. Add them to `site.socials` in
+   `src/lib/site.ts` and they appear in the footer and in the `sameAs` property
+   of the structured data automatically.
+5. **Credentials, staff and fees** — no page claims a CPA or EA licence, names
+   a preparer, or quotes a price, because none of that was supplied. An About
+   page is the worst place to guess at it. Add real details to `src/lib/site.ts`
+   and extend the About page; see the note at the top of
+   `src/lib/service-content.ts`.
 
 ## Photography
 
@@ -152,6 +166,40 @@ the slots can be filled in over time without the site ever looking half-dressed.
 (`/images/whatever.jpg`) with the file in `public/images/` and nothing else
 changes. For a client site this is the more robust option long-term, since it
 drops the runtime dependency on Unsplash's CDN.
+
+## Contact form
+
+The enquiry form on `/contact` has one rule behind it, in `src/lib/contact.ts`:
+**it never accepts a message it cannot deliver.** A form that says "thank you"
+and drops the enquiry is worse than no form — the prospect stops trying and the
+firm never learns they existed.
+
+So there are two modes, chosen on the server:
+
+| State | What the form does |
+| ----- | ------------------- |
+| `RESEND_API_KEY` + `CONTACT_FROM_EMAIL` set | Posts to a server action, which validates and sends. |
+| Either missing | Composes the same message in the visitor's own email app. No backend involved, nothing to lose. |
+
+If delivery is configured but then fails, the visitor is told, their message
+stays in the form, and they are handed the same mail-client fallback with
+everything they typed already in it. The provider error is logged server-side
+only — it can quote the API key back, so it never reaches the browser.
+
+`/contact` is statically rendered, so the mode is fixed at build time. Adding
+the environment variables to a running host is not enough; redeploy.
+
+Other things worth knowing:
+
+- Validation is deliberately forgiving. Turning away a real enquiry over a
+  formatting opinion costs more than accepting an odd one.
+- There is a honeypot field for bots, positioned off-screen rather than
+  `display: none` (some bots skip hidden inputs) and kept out of the tab order.
+  A caught submission is reported back as sent, so a bot learns nothing.
+- **There is no rate limiting.** If the form attracts abuse, add it at the edge
+  or in the server action — nothing in the app throttles submissions today.
+- Swapping Resend for another provider means changing one `fetch` in
+  `deliverEnquiry()`. There is no SDK dependency.
 
 ## SEO
 

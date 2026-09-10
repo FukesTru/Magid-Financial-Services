@@ -115,7 +115,8 @@ body copy.
 | `site/SiteHeader` / `SiteFooter`| Site chrome, rendered once from the root layout                 |
 | `site/Wordmark`                 | The brand lockup. Never re-typeset it inline                    |
 | `site/FloatingCallButton`       | Mobile "Call Now", appears past 520px of scroll                 |
-| `site/ComingSoon`               | Placeholder route shell — delete as real pages land             |
+| `site/PageHero`                 | Opening block of every page below the homepage, with breadcrumbs |
+| `contact/ContactForm`           | The enquiry form — see the Contact form section of the README    |
 
 ### Buttons
 
@@ -235,6 +236,18 @@ If you write a new animation, give it the same two escape hatches.
 - A "Skip to content" link is the first tab stop and targets `#main`.
 - Decorative SVG and ornament carry `aria-hidden="true"`; interactive controls
   carry real labels (`aria-expanded`, `aria-controls`, `aria-current`).
+- **Expandable things are disclosures, not ARIA menus.** The services dropdown,
+  the mobile nav and the FAQ are all a button with `aria-expanded` revealing a
+  panel of ordinary content. The ARIA menu pattern promises roving arrow-key
+  focus and typeahead; announcing a list of links as a menu without those is
+  worse than not announcing it at all.
+- A dropdown that opens on hover must not *also* open on focus. Focus-to-open
+  fights the button's own toggle: tabbing to it opens the panel, and the Enter
+  press a keyboard user then makes closes it again. Hover opens, Enter or Space
+  toggles, Escape closes and returns focus to the trigger.
+- Nothing may close out from under the keyboard. A pointer leaving a hover-open
+  panel must check whether focus is still inside it before dismissing, or it
+  strands focus on a hidden element.
 - Every image needs an `alt`. Decorative images take `alt=""`.
 
 ---
