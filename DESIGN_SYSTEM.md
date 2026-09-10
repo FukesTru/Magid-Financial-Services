@@ -159,6 +159,11 @@ yields:
 | Tagline `gold-400`  | 7.86:1  | 3.0:1         |
 | Body `ink-300`      | 5.90:1  | 4.5:1         |
 
+The closing CTA centres its text, so it sits differently against a
+right-anchored photo. Measured the same way, under the centred CTA block with
+the test image's hot spot placed dead centre: headline 13.03:1, gold 8.42:1,
+body 6.31:1 — the section's own ledger grid and gold wash carry it.
+
 If you retune the opacity or overlays, re-measure. Do not ship a backdrop
 whose text band drops below 4.5:1 for body copy.
 
