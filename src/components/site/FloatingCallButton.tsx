@@ -6,6 +6,9 @@ import { site } from "@/lib/site";
 /**
  * Mobile-only "Call Now" button. Hidden until the visitor has scrolled past
  * the hero, so it never covers the hero's own phone CTA.
+ *
+ * Pinned bottom left: the LeadConnector chat launcher takes the bottom right
+ * corner, and two overlapping round buttons there would fight each other.
  */
 export function FloatingCallButton() {
   const [visible, setVisible] = useState(false);
@@ -21,7 +24,7 @@ export function FloatingCallButton() {
     <a
       href={site.phone.href}
       aria-label={`Call ${site.name} at ${site.phone.display}`}
-      className={`fixed right-5 bottom-5 z-40 flex items-center gap-2.5 rounded-full bg-gold-500 py-3.5 pr-5 pl-4 font-sans text-sm font-semibold text-navy-950 shadow-[0_10px_30px_-6px_rgba(0,0,0,0.6)] transition-all duration-300 ease-brand motion-reduce:transition-none lg:hidden ${
+      className={`fixed bottom-5 left-5 z-40 flex items-center gap-2.5 rounded-full bg-gold-500 py-3.5 pr-5 pl-4 font-sans text-sm font-semibold text-navy-950 shadow-[0_10px_30px_-6px_rgba(0,0,0,0.6)] transition-all duration-300 ease-brand motion-reduce:transition-none lg:hidden ${
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"
