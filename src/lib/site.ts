@@ -64,8 +64,6 @@ export const site = {
   socials: [] as { label: string; href: string }[],
 } as const;
 
-export const yearsInBusiness = new Date().getFullYear() - site.foundedYear;
-
 /* ------------------------------------------------------------------------ */
 /* Navigation                                                                */
 /* ------------------------------------------------------------------------ */

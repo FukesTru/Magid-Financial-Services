@@ -5,7 +5,7 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { photos } from "@/lib/images";
 import { PhotoFrame } from "@/components/ui/Photo";
-import { site, yearsInBusiness } from "@/lib/site";
+import { site } from "@/lib/site";
 
 export function AboutPreview() {
   return (
@@ -55,28 +55,6 @@ export function AboutPreview() {
           </Reveal>
 
           <Reveal delay={0.18}>
-            <dl className="mt-10 grid grid-cols-3 gap-px overflow-hidden border border-white/8 bg-white/8">
-              {[
-                { value: `${yearsInBusiness}+`, label: "Years in practice" },
-                { value: "50", label: "States served" },
-                { value: "12", label: "Service areas" },
-              ].map((stat) => (
-                <div key={stat.label} className="bg-navy-850 px-4 py-6 sm:px-5">
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd>
-                    <span className="block font-display text-3xl text-gold-400">
-                      {stat.value}
-                    </span>
-                    <span className="mt-2 block font-sans text-[0.6875rem] font-semibold tracking-[0.16em] text-ink-400 uppercase">
-                      {stat.label}
-                    </span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-
-          <Reveal delay={0.24}>
             <Link
               href="/about"
               className="group mt-10 inline-flex items-center gap-2 font-sans text-sm font-semibold tracking-wide text-gold-400 transition-colors hover:text-gold-300"

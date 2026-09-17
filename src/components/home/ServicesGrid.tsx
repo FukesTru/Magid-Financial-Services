@@ -14,7 +14,7 @@ export function ServicesGrid() {
           <SectionHeading
             eyebrow="What we do"
             id="services-heading"
-            title="Twelve ways we take the paperwork off your desk"
+            title="The paperwork we take off your desk"
             lead="Every engagement starts with a conversation about what you actually need — then we handle it end to end."
           />
         </Reveal>
