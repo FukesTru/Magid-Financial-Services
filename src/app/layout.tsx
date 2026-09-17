@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Analytics } from "@/components/seo/Analytics";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { ChatWidget } from "@/components/site/ChatWidget";
 import { FloatingCallButton } from "@/components/site/FloatingCallButton";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -30,7 +31,7 @@ const description =
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Tax & Payroll Services | Payroll and Tax Solution Inc",
+    default: "Tax & Payroll Services in Huntingdon Valley, PA",
     template: `%s | ${site.name}`,
   },
   description,
@@ -52,12 +53,12 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_US",
     url: "/",
-    title: "Tax & Payroll Services | Payroll and Tax Solution Inc",
+    title: "Tax & Payroll Services in Huntingdon Valley, PA",
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tax & Payroll Services | Payroll and Tax Solution Inc",
+    title: "Tax & Payroll Services in Huntingdon Valley, PA",
     description,
   },
   robots: {
@@ -105,6 +106,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
         <OrganizationJsonLd />
         <Analytics />
+        <ChatWidget />
       </body>
     </html>
   );
