@@ -1,4 +1,4 @@
-# Magid Financial Services — Design System
+# Payroll and Tax Solution Inc — Design System
 
 The homepage establishes this system. **Every subsequent page must consume
 these tokens and primitives rather than re-inventing them**, so the site reads
@@ -219,7 +219,7 @@ Every page exports `metadata` with:
 
 ```ts
 export const metadata: Metadata = {
-  title: "Page name",              // the layout appends "| Magid Financial Services"
+  title: "Page name",              // the layout appends "| Payroll and Tax Solution Inc"
   description: "150–160 characters",
   alternates: { canonical: "/page-path" },
 };

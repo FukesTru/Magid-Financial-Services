@@ -1,6 +1,6 @@
-# Magid Financial Services
+# Payroll and Tax Solution Inc
 
-Website rebuild for Magid Financial Services — payroll, tax and accounting,
+Website rebuild for Payroll and Tax Solution Inc — payroll, tax and accounting,
 Huntingdon Valley, PA, serving clients in all 50 states since 1989.
 
 Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · Framer Motion ·

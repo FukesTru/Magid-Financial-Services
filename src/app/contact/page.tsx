@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Book a free consultation with Magid Financial Services. Call ${site.phone.display} or visit our office at ${site.address.street}, ${site.address.locality}, ${site.address.region}.`,
+  description: `Book a free consultation with ${site.name}. Call ${site.phone.display} or visit our office at ${site.address.street}, ${site.address.locality}, ${site.address.region}.`,
   alternates: { canonical: "/contact" },
 };
 

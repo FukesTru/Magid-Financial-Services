@@ -1,5 +1,5 @@
 {
-  "name": "magid-financial-services",
+  "name": "payroll-and-tax-solution",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -27,5 +27,5 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "description": "Website for Magid Financial Services \u2014 payroll, tax and accounting, Huntingdon Valley, PA."
+  "description": "Website for Payroll and Tax Solution Inc \u2014 payroll, tax and accounting, Huntingdon Valley, PA."
 }

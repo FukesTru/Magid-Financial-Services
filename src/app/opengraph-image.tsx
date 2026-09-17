@@ -2,17 +2,17 @@ import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
 
 export const alt =
-  "Magid Financial Services — expert payroll and tax solutions, Huntingdon Valley, PA";
+  "Payroll and Tax Solution Inc — expert payroll and tax solutions, Huntingdon Valley, PA";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /* The exact strings drawn into the card. Google's font API subsets to the
    characters we ask for, so these double as the subset request — anything
    rendered but not listed here would silently fall back to another face. */
-const MONOGRAM = "M";
+const MONOGRAM = "PTS";
 const HEADLINE = "Expert Payroll & Tax Solutions";
 const TAGLINE = "Maximizing Your Success, Minimizing Your Stress";
-const LOCKUP = "MAGID FINANCIAL SERVICES";
+const LOCKUP = "PAYROLL AND TAX SOLUTION INC";
 const FOOTER = `${site.address.locality}, ${site.address.region}  ·  Serving all 50 states since ${site.foundedYear}  ·  ${site.phone.display}`;
 
 /**
@@ -92,11 +92,12 @@ export default async function Image() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: 62,
+              width: 78,
               height: 62,
               border: "2px solid rgba(201,168,76,0.55)",
               color: "#C9A84C",
-              fontSize: 34,
+              fontSize: 26,
+              letterSpacing: "0.04em",
               fontFamily: serif,
             }}
           >

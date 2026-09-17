@@ -40,8 +40,8 @@ export function AboutPreview() {
           <Reveal delay={0.1}>
             <div className="space-y-6 text-base leading-relaxed text-ink-300 sm:text-lg">
               <p>
-                Magid Financial Services has prepared returns and run payroll
-                from the same Huntingdon Valley office since {site.foundedYear}.
+                {site.name} has prepared returns and run payroll from the
+                same Huntingdon Valley office since {site.foundedYear}.
                 What started as a neighborhood practice now files for
                 individuals, families, and business owners in all 50 states.
               </p>
