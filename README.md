@@ -64,10 +64,10 @@ every later page must follow.
 Three things are deliberately unfinished, each marked with a comment in the
 code:
 
-1. **Testimonials** — `src/components/home/Testimonials.tsx` renders a
-   "reviews pending" state because no client reviews have been collected.
-   Paste verified quotes into the `testimonials` array and the section switches
-   to real quote cards on its own. Do not invent testimonials.
+1. **Testimonials** — now live, quoting the firm's Google Business Profile.
+   Reviews live in `src/lib/reviews.ts`; read the rules at the top of that file
+   before editing. No average rating is shown or marked up, deliberately — see
+   the note in `Testimonials.tsx`.
 2. **Routes for pages 2..N** — `/about`, `/services`, `/contact` and the twelve
    `/services/[slug]` pages currently render the `ComingSoon` shell so that no
    homepage link 404s. Replace each as the page is designed, then delete
