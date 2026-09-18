@@ -1,6 +1,6 @@
 import { FaqJsonLd } from "@/components/seo/JsonLd";
 import { AboutPreview } from "@/components/home/AboutPreview";
-import { ClosingCta } from "@/components/home/ClosingCta";
+import { ClosingCta } from "@/components/site/ClosingCta";
 import { FaqSection } from "@/components/home/FaqSection";
 import { Hero } from "@/components/home/Hero";
 import { ServicesGrid } from "@/components/home/ServicesGrid";

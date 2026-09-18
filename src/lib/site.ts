@@ -97,13 +97,42 @@ export type IconName =
   | "house"
   | "scales";
 
+/** Groups the services for the nav menu and the services index. */
+export type ServiceCategory = "individuals" | "businesses" | "resolution";
+
 export type Service = {
   slug: string;
   name: string;
   /** One line, used on the homepage services grid. */
   summary: string;
   icon: IconName;
+  category: ServiceCategory;
 };
+
+export const serviceCategories: {
+  key: ServiceCategory;
+  label: string;
+  blurb: string;
+}[] = [
+  {
+    key: "individuals",
+    label: "Individuals & Families",
+    blurb:
+      "Returns prepared and filed, and a plan for the year ahead rather than a scramble each April.",
+  },
+  {
+    key: "businesses",
+    label: "Businesses",
+    blurb:
+      "Payroll, books and filings handled on schedule, so the deadlines stop being your problem.",
+  },
+  {
+    key: "resolution",
+    label: "Problems & Relief",
+    blurb:
+      "Notices, audits and debts worked through with someone who deals with the agencies for you.",
+  },
+];
 
 export const services: Service[] = [
   {
@@ -112,6 +141,7 @@ export const services: Service[] = [
     summary:
       "Accurate individual and family returns prepared, reviewed, and filed by a professional.",
     icon: "document",
+    category: "individuals",
   },
   {
     slug: "accounting-services",
@@ -119,6 +149,7 @@ export const services: Service[] = [
     summary:
       "Bookkeeping, reconciliations, and financial statements that keep your records audit-ready.",
     icon: "ledger",
+    category: "businesses",
   },
   {
     slug: "business-tax-services",
@@ -126,6 +157,7 @@ export const services: Service[] = [
     summary:
       "Filings for LLCs, S-corps, partnerships, and corporations, handled end to end.",
     icon: "building",
+    category: "businesses",
   },
   {
     slug: "income-tax-return-filing",
@@ -133,6 +165,7 @@ export const services: Service[] = [
     summary:
       "Electronic federal and state filing with confirmation and refund tracking.",
     icon: "receipt",
+    category: "individuals",
   },
   {
     slug: "payroll-support",
@@ -140,6 +173,7 @@ export const services: Service[] = [
     summary:
       "Payroll runs, deposits, and quarterly filings managed on schedule, every cycle.",
     icon: "payroll",
+    category: "businesses",
   },
   {
     slug: "tax-planning",
@@ -147,6 +181,7 @@ export const services: Service[] = [
     summary:
       "Year-round strategy that positions you for a lower bill before the deadline arrives.",
     icon: "chart",
+    category: "individuals",
   },
   {
     slug: "tax-problem-consulting",
@@ -154,6 +189,7 @@ export const services: Service[] = [
     summary:
       "Back taxes, notices, liens, and penalties reviewed and worked toward a resolution.",
     icon: "lifebuoy",
+    category: "resolution",
   },
   {
     slug: "irs-audit-representation",
@@ -161,6 +197,7 @@ export const services: Service[] = [
     summary:
       "We correspond with the IRS on your behalf and stand with you through the audit.",
     icon: "shield",
+    category: "resolution",
   },
   {
     slug: "new-business-tax-consulting",
@@ -168,6 +205,7 @@ export const services: Service[] = [
     summary:
       "Entity selection, registrations, and a tax setup your new venture can grow into.",
     icon: "seedling",
+    category: "businesses",
   },
   {
     slug: "local-tax-return-preparation",
@@ -175,6 +213,7 @@ export const services: Service[] = [
     summary:
       "Pennsylvania municipal and school district returns prepared alongside your federal filing.",
     icon: "pin",
+    category: "individuals",
   },
   {
     slug: "loan-modifications",
@@ -182,6 +221,7 @@ export const services: Service[] = [
     summary:
       "Documentation and financial packages assembled to support a modification request.",
     icon: "house",
+    category: "resolution",
   },
   {
     slug: "debt-settlement",
@@ -189,6 +229,7 @@ export const services: Service[] = [
     summary:
       "A clear-eyed look at what you owe and a negotiated path toward settling it.",
     icon: "scales",
+    category: "resolution",
   },
 ];
 
@@ -196,6 +237,10 @@ export const serviceSlugs = services.map((s) => s.slug);
 
 export function getService(slug: string): Service | undefined {
   return services.find((s) => s.slug === slug);
+}
+
+export function servicesByCategory(category: ServiceCategory): Service[] {
+  return services.filter((s) => s.category === category);
 }
 
 /* ------------------------------------------------------------------------ */
