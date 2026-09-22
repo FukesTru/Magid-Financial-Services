@@ -68,10 +68,11 @@ code:
    Reviews live in `src/lib/reviews.ts`; read the rules at the top of that file
    before editing. No average rating is shown or marked up, deliberately — see
    the note in `Testimonials.tsx`.
-2. **Routes for pages 2..N** — `/about`, `/services`, `/contact` and the twelve
-   `/services/[slug]` pages currently render the `ComingSoon` shell so that no
-   homepage link 404s. Replace each as the page is designed, then delete
-   `src/components/site/ComingSoon.tsx`.
+2. **Service page copy** — long-form content for each of the twelve service
+   pages lives in `src/lib/service-details.ts`, one entry per slug, with a
+   written meta description. The note at the top of that file records what is
+   deliberately absent from the copy (prices, turnaround promises, outcome
+   guarantees, unverified credentials).
 3. **Photography** — every slot in `src/lib/images.ts` is `null`, so the site
    currently renders without photos (which is a complete design, not a broken
    one). Fill a slot to switch photography on for that section; the file

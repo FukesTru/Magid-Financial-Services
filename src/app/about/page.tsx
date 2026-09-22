@@ -10,7 +10,7 @@ import { site, valueProps } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `${site.name} has prepared taxes, run payroll and kept books for individuals and businesses from Huntingdon Valley, PA since ${site.foundedYear}, serving clients in all 50 states.`,
+  description: `${site.name} has prepared taxes, run payroll and kept books from Huntingdon Valley, PA since ${site.foundedYear}, for clients in all 50 states.`,
   alternates: { canonical: "/about" },
 };
 

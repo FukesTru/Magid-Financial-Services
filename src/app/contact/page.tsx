@@ -86,10 +86,51 @@ export default function ContactPage() {
               </address>
 
               <p className="mt-8 text-sm leading-relaxed text-ink-400">
-                Prefer to talk it through? Call and you will reach someone who
-                can answer, not a queue. We serve clients in all 50 states, so
-                distance is not a problem.
+                Prefer to talk it through? Call during office hours and ask for
+                whoever handles new enquiries. We serve clients in all 50
+                states, so distance is not a problem &mdash; most of our work
+                is done by phone and secure upload.
               </p>
+            </Reveal>
+
+            <Reveal delay={0.16}>
+              <h2 className="mt-12 font-display text-xl text-ink-50">
+                What happens next
+              </h2>
+              <div aria-hidden="true" className="mt-4 h-px w-10 bg-gold-500/50" />
+              <ol className="mt-7 space-y-6">
+                {[
+                  {
+                    title: "We read what you sent",
+                    body: "A preparer reads it and works out what your situation actually needs, rather than sorting it into a queue.",
+                  },
+                  {
+                    title: "We tell you what it involves",
+                    body: "What we would handle, what it will cost, and what we need from you. Sometimes the answer is that you do not need to hire anyone.",
+                  },
+                  {
+                    title: "You decide",
+                    body: "Nothing starts until scope and cost are settled. The consultation itself is free either way.",
+                  },
+                ].map((step, i) => (
+                  <li key={step.title} className="flex gap-4">
+                    <span
+                      aria-hidden="true"
+                      className="font-display text-xl leading-none text-gold-500/40"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span>
+                      <span className="block font-sans text-sm font-semibold text-ink-200">
+                        {step.title}
+                      </span>
+                      <span className="mt-1.5 block text-sm leading-relaxed text-ink-400">
+                        {step.body}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
             </Reveal>
           </div>
 
