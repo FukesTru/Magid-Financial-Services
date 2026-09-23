@@ -31,7 +31,15 @@ const description =
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Tax & Payroll Services | Magid Financial Services",
+    /*
+     * The brief specified "Tax & Payroll Services | Magid Financial Services".
+     * Reversed deliberately: a browser tab truncates after roughly twenty
+     * characters, so keyword-first meant the tab read "Tax & Payroll
+     * Services…" beside the favicon and the firm's name never appeared. The
+     * keyword phrase is still in the title, and also in the h1, the
+     * description and the structured data.
+     */
+    default: "Magid Financial Services | Tax & Payroll Services",
     template: `%s | ${site.name}`,
   },
   description,
@@ -53,12 +61,12 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_US",
     url: "/",
-    title: "Tax & Payroll Services | Magid Financial Services",
+    title: "Magid Financial Services | Tax & Payroll Services",
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tax & Payroll Services | Magid Financial Services",
+    title: "Magid Financial Services | Tax & Payroll Services",
     description,
   },
   robots: {
