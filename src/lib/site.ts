@@ -1,5 +1,5 @@
 /**
- * Payroll and Tax Solution Inc — site-wide constants.
+ * Magid Financial Services — site-wide constants.
  *
  * Every page pulls business facts (NAP, services, nav) from here so that
  * contact details and the services list can never drift between pages.
@@ -34,11 +34,11 @@ function resolveSiteUrl(): string {
 
 export const site = {
   /** Full legal name. Used in the page title, footer, and structured data. */
-  name: "Payroll and Tax Solution Inc",
+  name: "Magid Financial Services",
   /** Compact form for tight contexts. */
-  shortName: "Payroll & Tax Solution",
+  shortName: "Magid Financial",
   /** Initials, used by the wordmark and favicon. */
-  initials: "PTS",
+  initials: "M",
   tagline:
     "Expert Solutions for Your Payroll and Tax Needs—Maximizing Your Success, Minimizing Your Stress",
   foundedYear: 1989,

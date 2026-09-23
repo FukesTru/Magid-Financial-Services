@@ -26,12 +26,12 @@ const inter = Inter({
 });
 
 const description =
-  "Payroll, tax preparation and accounting in Huntingdon Valley, PA. Payroll and Tax Solution Inc serves individuals and businesses in all 50 states since 1989.";
+  "Payroll, tax preparation and accounting from Huntingdon Valley, PA. Magid Financial Services has served individuals and businesses in all 50 states since 1989.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Tax & Payroll Services in Huntingdon Valley, PA",
+    default: "Tax & Payroll Services | Magid Financial Services",
     template: `%s | ${site.name}`,
   },
   description,
@@ -53,12 +53,12 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_US",
     url: "/",
-    title: "Tax & Payroll Services in Huntingdon Valley, PA",
+    title: "Tax & Payroll Services | Magid Financial Services",
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tax & Payroll Services in Huntingdon Valley, PA",
+    title: "Tax & Payroll Services | Magid Financial Services",
     description,
   },
   robots: {
