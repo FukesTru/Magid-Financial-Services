@@ -250,19 +250,19 @@ export function servicesByCategory(category: ServiceCategory): Service[] {
 export const valueProps = [
   {
     title: `Established ${site.foundedYear}`,
-    body: `More than three decades of filings behind us. We have worked through every major tax law change since ${site.foundedYear}, and we bring that pattern recognition to your return.`,
+    body: `Every major rewrite of the tax code since ${site.foundedYear} has crossed this desk. Mostly that is useful for knowing which problems are ordinary and which are genuinely worth worrying about.`,
   },
   {
-    title: "One preparer, start to finish",
-    body: "You are not routed through a call center. The person who prepares your return is the person who answers when you call back in August with a question.",
+    title: "No surprises on scope or cost",
+    body: "You are told what we would handle and what it will cost before anything starts. Occasionally that conversation ends with us saying you do not need to hire anyone.",
   },
   {
-    title: "Licensed across all 50 states",
-    body: "Moved, work remotely, or run a business across state lines? We handle multi-state filings and serve clients nationwide by phone, email, and secure upload.",
+    title: "Fifty states, one phone number",
+    body: "Moved away, work remotely, or run a business across state lines? Multi-state filings are routine here, and the whole process works by phone and secure upload.",
   },
   {
-    title: "We represent you before the IRS",
-    body: "If a notice arrives or an audit opens, we correspond with the IRS directly on your behalf, so you are never facing the agency alone.",
+    title: "We deal with the IRS, not you",
+    body: "When a notice arrives, send it to us. We file the authorisation, handle the correspondence, and you stop being the one on the phone with the agency.",
   },
 ] as const;
 

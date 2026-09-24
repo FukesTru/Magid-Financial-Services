@@ -52,10 +52,11 @@ export function Hero() {
 
           <Reveal delay={0.22}>
             <p className="mt-9 max-w-2xl text-lg leading-relaxed text-ink-300 sm:text-xl">
-              Returns prepared, payroll run, and books kept straight by people
-              who have been doing it since {site.foundedYear}. Based in
-              Huntingdon Valley, Pennsylvania &mdash; filing for individuals and
-              businesses in all 50 states.
+              Somebody has to read the notices, hit the deadlines and know which
+              deductions are yours. Since {site.foundedYear},{" "}
+              <span className="text-ink-50">that has been us</span> &mdash; from
+              one office in Huntingdon Valley, for families and business owners
+              in all 50 states.
             </p>
           </Reveal>
 

@@ -15,7 +15,7 @@ export function ServicesGrid() {
             eyebrow="What we do"
             id="services-heading"
             title="The paperwork we take off your desk"
-            lead="Every engagement starts with a conversation about what you actually need — then we handle it end to end."
+            lead="Start by telling us the problem. We will tell you what it takes to fix, what it costs, and what we need from you — before any work begins."
           />
         </Reveal>
 

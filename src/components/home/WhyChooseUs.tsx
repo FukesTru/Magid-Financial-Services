@@ -14,7 +14,7 @@ export function WhyChooseUs() {
               eyebrow="Why clients stay"
               id="why-heading"
               title="Four reasons the same families keep coming back"
-              lead="Tax work is a relationship, not a transaction. Here is what ours looks like."
+              lead="Anyone can file a return once. Fewer can still answer the question in August."
             />
           </Reveal>
           <Reveal delay={0.12}>
