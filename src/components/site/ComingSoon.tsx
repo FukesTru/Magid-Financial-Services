@@ -24,8 +24,10 @@ export function ComingSoon({
   body: string;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-navy-900 pt-40 pb-28 sm:pt-48 sm:pb-32">
-      <div aria-hidden="true" className="gold-wash absolute inset-0 -z-10" />
+    <section
+      data-surface="dark"
+      className="relative isolate overflow-hidden bg-navy pt-40 pb-28 sm:pt-48 sm:pb-32">
+      <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
       <Container>
         <div className="max-w-2xl">
           <p className="eyebrow">{eyebrow}</p>

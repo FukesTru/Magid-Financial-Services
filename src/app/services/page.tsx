@@ -19,8 +19,10 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy-900 pt-36 pb-16 sm:pt-44 sm:pb-20">
-        <div aria-hidden="true" className="gold-wash absolute inset-0 -z-10" />
+      <section
+        data-surface="dark"
+        className="relative isolate overflow-hidden bg-navy pt-36 pb-16 sm:pt-44 sm:pb-20">
+        <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
         <Container>
           <Reveal>
             <div className="max-w-3xl">
@@ -45,7 +47,7 @@ export default function ServicesPage() {
         <Section
           key={category.key}
           id={category.key}
-          tone={index % 2 === 0 ? "light" : "base"}
+          tone={index % 2 === 0 ? "paper" : "paperRaised"}
           ariaLabelledBy={`${category.key}-heading`}
         >
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -104,7 +106,7 @@ export default function ServicesPage() {
         </Section>
       ))}
 
-      <Section tone="base">
+      <Section tone="paper">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-2xl leading-snug font-medium sm:text-3xl">

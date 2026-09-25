@@ -8,7 +8,9 @@ import { site } from "@/lib/site";
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-navy-900 pt-32 pb-20 sm:pt-40 sm:pb-28 lg:min-h-[92svh] lg:pt-48 lg:pb-32">
+    <section
+      data-surface="dark"
+      className="relative isolate overflow-hidden bg-navy pt-32 pb-20 sm:pt-40 sm:pb-28 lg:min-h-[92svh] lg:pt-48 lg:pb-32">
       {/* Optional photographic depth, sunk beneath the grid and gold wash. */}
       {photos.heroBackground && (
         <PhotoBackdrop photo={photos.heroBackground} priority />
@@ -19,10 +21,10 @@ export function Hero() {
         aria-hidden="true"
         className="ledger-grid absolute inset-0 -z-20 opacity-70 [mask-image:radial-gradient(70%_60%_at_50%_0%,black,transparent)]"
       />
-      <div aria-hidden="true" className="gold-wash absolute inset-0 -z-10" />
+      <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-navy-900"
+        className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-navy"
       />
 
       <Container className="flex h-full flex-col justify-center">

@@ -14,7 +14,7 @@ export function SiteFooter() {
   const credits = photoCredits();
 
   return (
-    <footer className="border-t border-line bg-navy-950">
+    <footer data-surface="dark" className="border-t border-line bg-navy-deep">
       <Container className="py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           {/* Brand + address */}

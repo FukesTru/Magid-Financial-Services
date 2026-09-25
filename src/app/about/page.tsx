@@ -38,8 +38,10 @@ export default function AboutPage() {
   return (
     <>
       {/* Intro */}
-      <section className="relative isolate overflow-hidden bg-navy-900 pt-36 pb-16 sm:pt-44 sm:pb-20">
-        <div aria-hidden="true" className="gold-wash absolute inset-0 -z-10" />
+      <section
+        data-surface="dark"
+        className="relative isolate overflow-hidden bg-navy pt-36 pb-16 sm:pt-44 sm:pb-20">
+        <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
         <Container>
           <Reveal>
             <div className="max-w-3xl">
@@ -62,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <Section tone="light" ariaLabelledBy="story-heading">
+      <Section tone="paper" ariaLabelledBy="story-heading">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <Reveal>
@@ -104,7 +106,7 @@ export default function AboutPage() {
       </Section>
 
       {/* How we work */}
-      <Section tone="base" ariaLabelledBy="process-heading">
+      <Section tone="paperRaised" ariaLabelledBy="process-heading">
         <Reveal>
           <SectionHeading
             eyebrow="What to expect"
@@ -136,7 +138,7 @@ export default function AboutPage() {
       </Section>
 
       {/* Why clients stay */}
-      <Section tone="light" ariaLabelledBy="values-heading">
+      <Section tone="paper" ariaLabelledBy="values-heading">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <Reveal>
@@ -179,7 +181,7 @@ export default function AboutPage() {
       </Section>
 
       {/* Where to find us */}
-      <Section tone="base" ariaLabelledBy="office-heading">
+      <Section tone="paperRaised" ariaLabelledBy="office-heading">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <Reveal>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import { Analytics } from "@/components/seo/Analytics";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { ChatWidget } from "@/components/site/ChatWidget";
@@ -9,12 +9,16 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-/* Headline face — Playfair Display (serif). */
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+/* Headline face — Fraunces. A variable optical-size serif: warmer and more
+   characterful than a neoclassical face, which suits a thirty-five-year
+   practice better than something that looks like a luxury watch advert. */
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  // Variable font: omit `weight` so the whole range is available, which is
+  // what lets `axes` be set at all.
+  axes: ["SOFT", "WONK", "opsz"],
   style: ["normal", "italic"],
 });
 
@@ -78,15 +82,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0f1a",
-  colorScheme: "dark",
+  themeColor: "#0e1726",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
         {/* Without JS the scroll reveals never run, so unpin their opacity. */}
@@ -97,10 +101,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           `}</style>
         </noscript>
       </head>
-      <body className="flex min-h-full flex-col bg-navy-900">
+      <body className="flex min-h-full flex-col bg-bone">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:bg-gold-500 focus:px-4 focus:py-2 focus:font-sans focus:text-sm focus:font-semibold focus:text-navy-950"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:bg-navy focus:px-4 focus:py-2 focus:font-sans focus:text-sm focus:font-semibold focus:text-bone"
         >
           Skip to content
         </a>

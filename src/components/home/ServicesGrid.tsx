@@ -8,7 +8,7 @@ import { services } from "@/lib/site";
 
 export function ServicesGrid() {
   return (
-    <Section id="services" tone="light" ariaLabelledBy="services-heading">
+    <Section id="services" tone="paper" ariaLabelledBy="services-heading">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <Reveal className="lg:max-w-2xl">
           <SectionHeading

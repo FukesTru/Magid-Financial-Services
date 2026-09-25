@@ -6,7 +6,7 @@ import { faqs, site } from "@/lib/site";
 
 export function FaqSection() {
   return (
-    <Section id="faq" tone="base" ariaLabelledBy="faq-heading">
+    <Section id="faq" tone="paper" ariaLabelledBy="faq-heading">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <Reveal>

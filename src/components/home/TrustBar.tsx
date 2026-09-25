@@ -12,7 +12,8 @@ export function TrustBar() {
   return (
     <section
       aria-label="Credentials"
-      className="border-y border-line bg-navy-950"
+      data-surface="dark"
+      className="border-y border-line bg-navy-deep"
     >
       <Container className="py-7">
         <Reveal y={12}>

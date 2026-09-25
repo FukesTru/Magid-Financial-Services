@@ -15,8 +15,10 @@ export default function ContactPage() {
   const { address } = site;
 
   return (
-    <section className="relative isolate overflow-hidden bg-navy-900 pt-36 pb-24 sm:pt-44 sm:pb-28">
-      <div aria-hidden="true" className="gold-wash absolute inset-0 -z-10" />
+    <section
+        data-surface="dark"
+        className="relative isolate overflow-hidden bg-navy pt-36 pb-24 sm:pt-44 sm:pb-28">
+      <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
 
       <Container>
         <Reveal>

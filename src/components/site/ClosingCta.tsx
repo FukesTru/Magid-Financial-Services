@@ -10,7 +10,8 @@ export function ClosingCta() {
   return (
     <section
       aria-labelledby="cta-heading"
-      className="relative isolate overflow-hidden border-t border-line bg-navy-950 py-24 sm:py-28 lg:py-32"
+      data-surface="dark"
+      className="relative isolate overflow-hidden border-t border-line bg-navy-deep py-24 sm:py-28 lg:py-32"
     >
       {photos.ctaBackground && <PhotoBackdrop photo={photos.ctaBackground} />}
 
@@ -20,7 +21,7 @@ export function ClosingCta() {
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_50%_100%,color-mix(in_srgb,var(--color-gold-500)_16%,transparent)_0%,transparent_70%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_50%_100%,color-mix(in_srgb,var(--color-brass)_16%,transparent)_0%,transparent_70%)]"
       />
 
       <Container>

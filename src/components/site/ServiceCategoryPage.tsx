@@ -30,8 +30,10 @@ export function ServiceCategoryPage({
 
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy-900 pt-36 pb-16 sm:pt-44 sm:pb-20">
-        <div aria-hidden="true" className="gold-wash absolute inset-0 -z-10" />
+      <section
+        data-surface="dark"
+        className="relative isolate overflow-hidden bg-navy pt-36 pb-16 sm:pt-44 sm:pb-20">
+        <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
         <Container>
           <Reveal>
             <nav aria-label="Breadcrumb" className="mb-8">
@@ -69,7 +71,7 @@ export function ServiceCategoryPage({
         </Container>
       </section>
 
-      <Section tone="light" ariaLabelledBy="cat-services-heading">
+      <Section tone="paper" ariaLabelledBy="cat-services-heading">
         <Reveal>
           <SectionHeading
             eyebrow="What we handle"
@@ -115,7 +117,7 @@ export function ServiceCategoryPage({
         </ul>
       </Section>
 
-      <Section tone="base" ariaLabelledBy="other-cats-heading">
+      <Section tone="paperRaised" ariaLabelledBy="other-cats-heading">
         <Reveal>
           <SectionHeading
             eyebrow="Also on the desk"

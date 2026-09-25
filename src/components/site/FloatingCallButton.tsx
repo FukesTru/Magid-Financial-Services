@@ -24,7 +24,7 @@ export function FloatingCallButton() {
     <a
       href={site.phone.href}
       aria-label={`Call ${site.name} at ${site.phone.display}`}
-      className={`fixed bottom-5 left-5 z-40 flex items-center gap-2.5 rounded-full bg-gold-500 py-3.5 pr-5 pl-4 font-sans text-sm font-semibold text-navy-950 shadow-[0_10px_30px_-6px_rgba(0,0,0,0.6)] transition-all duration-300 ease-brand motion-reduce:transition-none lg:hidden ${
+      className={`fixed bottom-5 left-5 z-40 flex items-center gap-2.5 rounded-full bg-brass py-3.5 pr-5 pl-4 font-sans text-sm font-semibold text-navy-deep shadow-[0_10px_30px_-6px_rgba(0,0,0,0.6)] transition-all duration-300 ease-brand motion-reduce:transition-none lg:hidden ${
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"

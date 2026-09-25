@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 
 export function AboutPreview() {
   return (
-    <Section tone="base" ariaLabelledBy="about-heading">
+    <Section tone="paper" ariaLabelledBy="about-heading">
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <Reveal>

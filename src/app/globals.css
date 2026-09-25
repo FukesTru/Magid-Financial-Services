@@ -8,52 +8,65 @@
    ========================================================================= */
 
 @theme {
-  /* --- Surfaces: deep navy ramp ------------------------------------- */
-  --color-navy-950: #060a12; /* deepest — footer                        */
-  --color-navy-900: #0a0f1a; /* BASE page background (brand spec)       */
-  --color-navy-850: #0e1524; /* raised band — alternating sections      */
-  --color-navy-800: #131c2e; /* card surface                            */
-  --color-navy-700: #1b2739; /* card hover / elevated                   */
-  --color-navy-600: #253349; /* hairline-adjacent, dividers             */
+  /* =====================================================================
+     LEDGER PALETTE
 
-  /* --- Accent: gold -------------------------------------------------- */
-  --color-gold-300: #efdda6;
-  --color-gold-400: #e2c877;
-  --color-gold-500: #c9a84c; /* PRIMARY ACCENT (brand spec)             */
-  --color-gold-600: #a8873a;
-  --color-gold-700: #856a2b;
+     Warm editorial light by default; navy is the accent band, not the
+     ground. Components use the SEMANTIC tokens below — ink-*, card, line,
+     accent — which are redefined inside [data-surface="dark"], so the same
+     component works on bone or on navy without knowing which it is on.
+     ===================================================================== */
 
-  /* --- Ink: text on dark --------------------------------------------- */
-  --color-ink-50: #f6f8fb; /* headings                                  */
-  --color-ink-200: #ccd5e2; /* high-emphasis body                       */
-  --color-ink-300: #a4b0c2; /* body copy                                */
-  --color-ink-400: #7b8799; /* muted / captions                         */
+  /* --- Raw surfaces ---------------------------------------------------- */
+  --color-bone: #fbf9f5; /* page ground — warm, never stark white        */
+  --color-bone-raised: #f3efe7; /* second light surface                  */
+  --color-navy: #0e1726; /* full-bleed accent band                       */
+  --color-navy-deep: #0a111d; /* footer, closing CTA                     */
+  --color-navy-soft: #16243a; /* card face on a navy band                */
 
-  /* --- Semantic surface tokens ----------------------------------------
-     These are what components should use. They are redefined inside a light
-     section (see [data-surface="light"] below), so a card, a hairline or an
-     accent automatically suits whichever band it sits in. Components that
-     reach past these for a raw navy or gold will not flip.               */
-  --color-card: #0e1524; /* card face on the current surface            */
-  --color-card-hover: #1b2739;
-  --color-line: #1c2331; /* hairlines, dividers, grid seams             */
-  --color-accent: #c9a84c; /* gold for TEXT, rules and icon strokes     */
-  --color-accent-soft: #e2c877; /* its hover                            */
+  /* --- Brass ------------------------------------------------------------ */
+  --color-brass: #c9a84c; /* bright brand gold — FILLS and on-navy text  */
+  --color-brass-bright: #e2c877;
 
-  /* --- Light surfaces --------------------------------------------------- */
-  --color-paper: #f5f7fa;
-  --color-paper-deep: #eceff5;
+  /* --- Semantic: light ground (the default) ---------------------------- */
+  --color-ink-50: #0e1726; /* headings                    17.1:1 on bone */
+  --color-ink-200: #27354c; /* strong body                11.8:1        */
+  --color-ink-300: #41506b; /* body                        7.7:1        */
+  --color-ink-400: #5e6d86; /* muted                       5.0:1        */
+  --color-card: #ffffff;
+  --color-card-hover: #faf8f3;
+  --color-line: #e5dfd3; /* warm hairline                                */
+  --color-accent: #7e632a; /* brass as TEXT                5.3:1 on bone */
+  --color-accent-soft: #634d1e;
 
-  /* --- Typography ----------------------------------------------------- */
-  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  /* --- Typography ------------------------------------------------------- */
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
 
-  /* --- Motion --------------------------------------------------------- */
+  /* --- Motion ----------------------------------------------------------- */
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-  /* --- Layout --------------------------------------------------------- */
-  --spacing-section: 6rem; /* vertical rhythm between page sections      */
+/* =========================================================================
+   NAVY BANDS
+
+   Section tone="navy" sets data-surface="dark". Redefining the semantic
+   tokens here flips every component inside — the brass returns to its bright
+   brand value because on navy it measures 7.9:1, where on bone it would be
+   1.9:1 and unreadable.
+   ========================================================================= */
+
+[data-surface="dark"] {
+  --color-ink-50: #fbf9f5; /* 17.1:1 on navy  */
+  --color-ink-200: #cbd5e4;
+  --color-ink-300: #a9b6ca; /*  8.8:1         */
+  --color-ink-400: #8494ac;
+  --color-card: #16243a;
+  --color-card-hover: #1d2e48;
+  --color-line: #22304a;
+  --color-accent: #c9a84c; /*  7.9:1          */
+  --color-accent-soft: #e2c877;
 }
 
 /* =========================================================================
@@ -75,10 +88,11 @@
   }
 
   body {
-    background-color: var(--color-navy-900);
+    background-color: var(--color-bone);
     color: var(--color-ink-300);
     font-family: var(--font-sans);
     font-feature-settings: "cv11", "ss01";
+    font-synthesis-weight: none;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -97,7 +111,7 @@
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-gold-500) 35%, transparent);
+    background-color: color-mix(in srgb, var(--color-brass) 38%, transparent);
     color: var(--color-ink-50);
   }
 
@@ -107,38 +121,6 @@
     outline-offset: 3px;
     border-radius: 2px;
   }
-}
-
-/* =========================================================================
-   LIGHT SURFACES
-
-   Section sets data-surface="light" on a light band. Redefining the semantic
-   tokens here means every component inside flips without knowing it is on a
-   light background — `text-ink-300` is still "body copy on this surface",
-   it just resolves to a dark slate instead of a pale one.
-
-   The accent darkens because it has to: the brand gold reads 2.29:1 on white,
-   which fails for text at any size. The darker gold measures above 5:1 while
-   staying recognisably the same colour. Gold BUTTON fills keep the bright
-   brand value, since there the gold is the background and the text on it is
-   navy.
-   ========================================================================= */
-
-[data-surface="light"] {
-  --color-ink-50: #0a0f1a; /* headings          */
-  --color-ink-200: #26314a; /* high-emphasis     */
-  --color-ink-300: #45536b; /* body              */
-  /* #6a7890 measured 4.47:1 on white and 3.88:1 on the deeper paper —
-     under the 4.5 body-text minimum on both. This clears it on all three
-     light grounds. */
-  --color-ink-400: #5c6982; /* muted             */
-
-  --color-card: #ffffff;
-  --color-card-hover: #f8fafc;
-  --color-line: #e2e7ee;
-
-  --color-accent: #7a6224;
-  --color-accent-soft: #5d4a17;
 }
 
 /* =========================================================================
@@ -157,23 +139,23 @@
 
 /* Hairline border used for cards and section seams. */
 @utility hairline {
-  border: 1px solid color-mix(in srgb, var(--color-ink-50) 8%, transparent);
+  border: 1px solid var(--color-line);
 }
 
 @utility hairline-t {
-  border-top: 1px solid color-mix(in srgb, var(--color-ink-50) 8%, transparent);
+  border-top: 1px solid var(--color-line);
 }
 
 @utility hairline-b {
   border-bottom: 1px solid
-    color-mix(in srgb, var(--color-ink-50) 8%, transparent);
+    var(--color-line);
 }
 
-/* Warm radial wash used behind the hero and the closing CTA. */
-@utility gold-wash {
+/* Warm radial wash behind a navy band's hero and closing CTA. */
+@utility warm-wash {
   background-image: radial-gradient(
     60% 70% at 50% 0%,
-    color-mix(in srgb, var(--color-gold-500) 14%, transparent) 0%,
+    color-mix(in srgb, var(--color-brass) 14%, transparent) 0%,
     transparent 70%
   );
 }
@@ -182,12 +164,12 @@
 @utility ledger-grid {
   background-image: linear-gradient(
       to right,
-      color-mix(in srgb, var(--color-ink-50) 3%, transparent) 1px,
+      color-mix(in srgb, var(--color-ink-50) 5%, transparent) 1px,
       transparent 1px
     ),
     linear-gradient(
       to bottom,
-      color-mix(in srgb, var(--color-ink-50) 3%, transparent) 1px,
+      color-mix(in srgb, var(--color-ink-50) 5%, transparent) 1px,
       transparent 1px
     );
   background-size: 64px 64px;

@@ -46,13 +46,13 @@ export function PhotoBackdrop({
       />
 
       {/* Hold the whole frame inside the palette. */}
-      <div className="absolute inset-0 bg-navy-900/45" />
+      <div className="absolute inset-0 bg-navy/45" />
 
       {/* Feather the top and bottom seams into the adjacent sections. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-transparent to-navy-900" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy via-transparent to-navy" />
 
       {/* Guarantee the text column stays on near-solid navy at every width. */}
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/85 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-transparent" />
     </div>
   );
 }
@@ -87,11 +87,11 @@ export function PhotoFrame({
       {/* Unifying tint — keeps a warm or blue-cast photo from clashing. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-navy-900/25 mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 bg-navy/25 mix-blend-multiply"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"
       />
     </figure>
   );

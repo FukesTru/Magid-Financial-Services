@@ -18,7 +18,7 @@ export function Testimonials() {
   if (reviews.length === 0) return null;
 
   return (
-    <Section tone="light" ariaLabelledBy="testimonials-heading">
+    <Section tone="paperRaised" ariaLabelledBy="testimonials-heading">
       <Reveal>
         <SectionHeading
           eyebrow="Client reviews"

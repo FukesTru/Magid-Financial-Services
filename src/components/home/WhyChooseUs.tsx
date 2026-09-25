@@ -6,7 +6,7 @@ import { valueProps } from "@/lib/site";
 
 export function WhyChooseUs() {
   return (
-    <Section tone="base" ariaLabelledBy="why-heading">
+    <Section tone="navy" ariaLabelledBy="why-heading">
       <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <Reveal>

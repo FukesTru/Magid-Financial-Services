@@ -29,8 +29,10 @@ const faqJsonLd = {
 export default function FaqPage() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-navy-900 pt-36 pb-16 sm:pt-44 sm:pb-20">
-        <div aria-hidden="true" className="gold-wash absolute inset-0 -z-10" />
+      <section
+        data-surface="dark"
+        className="relative isolate overflow-hidden bg-navy pt-36 pb-16 sm:pt-44 sm:pb-20">
+        <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
         <Container>
           <Reveal>
             <div className="max-w-3xl">
@@ -59,7 +61,7 @@ export default function FaqPage() {
         </Container>
       </section>
 
-      <Section tone="light" ariaLabelledBy="all-faq-heading">
+      <Section tone="paper" ariaLabelledBy="all-faq-heading">
         <h2 id="all-faq-heading" className="sr-only">
           All questions
         </h2>

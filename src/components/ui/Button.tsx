@@ -12,8 +12,8 @@ const base =
 const variants: Record<Variant, string> = {
   /** Primary action. One per screenful, at most. */
   gold:
-    "bg-gold-500 text-navy-950 shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset] " +
-    "hover:bg-gold-400 hover:shadow-[0_8px_24px_-8px_rgba(201,168,76,0.55)]",
+    "bg-brass text-navy-deep shadow-[0_1px_0_0_rgba(255,255,255,0.25)_inset] " +
+    "hover:bg-brass-bright hover:shadow-[0_8px_24px_-8px_rgba(201,168,76,0.55)]",
   /** Secondary action beside a gold button. */
   outline:
     "border border-accent/40 text-accent hover:border-accent " +

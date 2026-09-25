@@ -163,9 +163,14 @@ export function SiteHeader() {
   return (
     <header
       data-site-header
+      /* Transparent over the navy hero, so it declares the dark surface and
+         its text stays light. Once scrolled onto the paper body it becomes
+         bone and drops the attribute, flipping the same classes to their
+         light values. */
+      data-surface={solid ? undefined : "dark"}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-brand ${
         solid
-          ? "border-b border-line bg-navy-950/92 backdrop-blur-md"
+          ? "border-b border-line bg-bone/92 backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -302,7 +307,7 @@ export function SiteHeader() {
         ref={panelRef}
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
-        className="absolute inset-x-0 top-full hidden border-t border-line bg-navy-950 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9)] lg:block"
+        className="absolute inset-x-0 top-full hidden border-t border-line bg-bone shadow-[0_24px_48px_-24px_rgba(14,23,38,0.18)] lg:block"
       >
         <ServicesPanel onNavigate={() => setServicesOpen(false)} />
       </div>
@@ -311,7 +316,7 @@ export function SiteHeader() {
       <div
         id="mobile-menu"
         hidden={!menuOpen}
-        className="h-[calc(100svh-5rem)] overflow-y-auto border-t border-line bg-navy-950 lg:hidden"
+        className="h-[calc(100svh-5rem)] overflow-y-auto border-t border-line bg-bone lg:hidden"
       >
         <nav aria-label="Mobile" className="px-6 py-8 sm:px-8">
           <ul className="flex flex-col">

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 
 /**
- * The brand lockup: a gold-ruled monogram beside the firm name — "Magid" in
+ * The brand lockup: a accent-ruled monogram beside the firm name — "Magid" in
  * Playfair over "Financial Services" in letterspaced Inter. Used in the header
  * and footer; never re-typeset it inline anywhere else.
  */

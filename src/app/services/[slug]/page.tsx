@@ -54,8 +54,10 @@ export default async function ServicePage({
   return (
     <>
       {/* Header */}
-      <section className="relative isolate overflow-hidden bg-navy-900 pt-36 pb-16 sm:pt-44 sm:pb-20">
-        <div aria-hidden="true" className="gold-wash absolute inset-0 -z-10" />
+      <section
+        data-surface="dark"
+        className="relative isolate overflow-hidden bg-navy pt-36 pb-16 sm:pt-44 sm:pb-20">
+        <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
         <Container>
           <Reveal>
             <nav aria-label="Breadcrumb" className="mb-8">
@@ -105,7 +107,7 @@ export default async function ServicePage({
       {detail && (
         <>
           {/* Scope */}
-          <Section tone="light" ariaLabelledBy="covers-heading">
+          <Section tone="paper" ariaLabelledBy="covers-heading">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-4">
                 <Reveal>
@@ -147,7 +149,7 @@ export default async function ServicePage({
           </Section>
 
           {/* Who it is for, and what we need */}
-          <Section tone="base">
+          <Section tone="paperRaised">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
               <Reveal>
                 <h2 className="font-display text-2xl leading-snug font-medium sm:text-3xl">
@@ -189,7 +191,7 @@ export default async function ServicePage({
 
       {/* Related */}
       {related.length > 0 && (
-        <Section tone="light" ariaLabelledBy="related-heading">
+        <Section tone="paper" ariaLabelledBy="related-heading">
           <Reveal>
             <SectionHeading
               eyebrow={category?.label}
