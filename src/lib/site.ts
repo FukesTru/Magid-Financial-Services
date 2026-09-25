@@ -39,6 +39,8 @@ export const site = {
   shortName: "Magid Financial",
   /** Initials, used by the wordmark and favicon. */
   initials: "M",
+  /** The firm's official tagline. Kept as a brand asset; the homepage h1
+   *  is shorter (see components/home/Hero.tsx). */
   tagline:
     "Expert Solutions for Your Payroll and Tax Needs—Maximizing Your Success, Minimizing Your Stress",
   foundedYear: 1989,

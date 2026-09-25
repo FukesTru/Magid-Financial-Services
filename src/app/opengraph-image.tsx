@@ -10,8 +10,8 @@ export const contentType = "image/png";
    characters we ask for, so these double as the subset request — anything
    rendered but not listed here would silently fall back to another face. */
 const MONOGRAM = "M";
-const HEADLINE = "Expert Payroll & Tax Solutions";
-const TAGLINE = "Maximizing Your Success, Minimizing Your Stress";
+const HEADLINE = "Your taxes, handled.";
+const TAGLINE = "Your payroll, on time.";
 const LOCKUP = "MAGID FINANCIAL SERVICES";
 const FOOTER = `${site.address.locality}, ${site.address.region}  ·  Serving all 50 states since ${site.foundedYear}  ·  ${site.phone.display}`;
 

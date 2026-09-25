@@ -38,10 +38,13 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <h1 className="mt-7 font-display text-[2rem] leading-[1.1] font-medium text-ink-50 sm:text-[2.75rem] md:text-5xl lg:text-[3.75rem] xl:text-[4rem]">
-              Expert Payroll &amp; Tax Solutions&nbsp;&mdash;
+            {/* Short enough to set large. The firm's full tagline is kept in
+                lib/site.ts as a brand asset; as an h1 it ran to twelve words
+                and read like a brochure cover. */}
+            <h1 className="mt-7 font-display text-[2.5rem] leading-[1.06] font-medium text-ink-50 sm:text-[3.25rem] md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem]">
+              Your taxes, handled.
               <span className="mt-2 block font-normal text-accent italic">
-                Maximizing Your Success, Minimizing Your Stress
+                Your payroll, on time.
               </span>
             </h1>
           </Reveal>
