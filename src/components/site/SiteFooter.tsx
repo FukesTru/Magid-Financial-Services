@@ -111,7 +111,7 @@ export function SiteFooter() {
               ))}
               <li>
                 <Link
-                  href="/#faq"
+                  href="/faq"
                   className="text-sm text-ink-300 transition-colors hover:text-accent-soft"
                 >
                   FAQ

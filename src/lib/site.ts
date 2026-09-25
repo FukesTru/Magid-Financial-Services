@@ -114,23 +114,36 @@ export type Service = {
 export const serviceCategories: {
   key: ServiceCategory;
   label: string;
+  /** URL segment for the category's own landing page. */
+  slug: string;
   blurb: string;
+  /** Longer intro, used on the category page itself. */
+  intro: string;
 }[] = [
   {
     key: "individuals",
     label: "Individuals & Families",
+    slug: "individuals",
+    intro:
+      "Most people meet a tax preparer once a year and hope it goes quickly. The work that makes it go quickly happens before you arrive: knowing which records matter, which credits apply to your situation, and which of last year's decisions are still costing you.",
     blurb:
       "Returns prepared and filed, and a plan for the year ahead rather than a scramble each April.",
   },
   {
     key: "businesses",
     label: "Businesses",
+    slug: "businesses",
+    intro:
+      "Running a business means a calendar of filings nobody warned you about — payroll deposits, quarterly returns, year-end forms, the state and the municipality each wanting something different. Missing one is expensive, and the penalties arrive automatically.",
     blurb:
       "Payroll, books and filings handled on schedule, so the deadlines stop being your problem.",
   },
   {
     key: "resolution",
     label: "Problems & Relief",
+    slug: "tax-problems",
+    intro:
+      "Unopened letters, unfiled years, a balance that grew while you were not looking. None of it gets cheaper with time, and almost none of it is as bad as the notices make it sound once someone has read the file properly.",
     blurb:
       "Notices, audits and debts worked through with someone who deals with the agencies for you.",
   },
@@ -297,6 +310,26 @@ export const faqs = [
     question: "What should I do if I receive a letter from the IRS?",
     answer:
       "Do not ignore it, and do not respond before someone has read it. Send us a copy and we will tell you what the notice actually says, what the deadline is, and whether it needs a reply at all — many notices are routine adjustments rather than audits. If it does escalate, we can represent you before the IRS and handle the correspondence ourselves.",
+  },
+  {
+    question: "What do your services cost?",
+    answer:
+      "It depends on what the work involves — a straightforward individual return and a multi-state business filing are not the same job. You are told the figure before anything starts, and no work begins until the scope and the cost are settled. The first conversation, where we work out which it is, costs nothing.",
+  },
+  {
+    question: "Can you file a prior-year or amended return?",
+    answer:
+      "Yes to both. Unfiled years can be prepared and filed however far back they go, and that is usually the first step in resolving a balance with the IRS. An amended return corrects something on a filing already submitted — a missed form, a corrected 1099, a credit nobody claimed. Send us the original as filed and whatever changed.",
+  },
+  {
+    question: "What if I owe more than I can pay?",
+    answer:
+      "Filing and paying are separate obligations, and the penalty for not filing is the larger of the two — so the return goes in either way. From there the options are an instalment agreement, a penalty abatement request where there are grounds for one, or in some circumstances an offer to settle for less. Which applies depends on the numbers, and the numbers usually need establishing first.",
+  },
+  {
+    question: "Do you handle bookkeeping as well as tax returns?",
+    answer:
+      "We do. Books kept properly through the year make the return cheaper to prepare and far easier to defend; books left to drift cost money to reconstruct. We take on monthly bookkeeping and reconciliations, and we also clean up accounts that have fallen behind before a filing deadline forces the issue.",
   },
   {
     question: "Do you handle payroll for small businesses?",
