@@ -23,7 +23,7 @@ const FORM_NAME = "Website Form (Payroll and tax solution inc)";
 export function LeadForm() {
   return (
     <>
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-white p-2 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.7)]">
+      <div className="overflow-hidden rounded-xl border border-line bg-white p-2 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.7)]">
         <iframe
           src={`https://api.leadconnectorhq.com/widget/form/${FORM_ID}`}
           id={`inline-${FORM_ID}`}

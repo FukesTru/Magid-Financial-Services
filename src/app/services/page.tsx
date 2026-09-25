@@ -27,7 +27,7 @@ export default function ServicesPage() {
               <p className="eyebrow">What we do</p>
               <h1 className="mt-6 font-display text-4xl leading-[1.12] font-medium text-ink-50 sm:text-5xl">
                 Tax, payroll and accounting
-                <span className="text-gold-400 italic"> handled properly</span>
+                <span className="text-accent italic"> handled properly</span>
               </h1>
               <GoldRule weight="bold" className="mt-8 w-32" />
               <p className="mt-8 text-lg leading-relaxed text-ink-300">
@@ -45,7 +45,7 @@ export default function ServicesPage() {
         <Section
           key={category.key}
           id={category.key}
-          tone={index % 2 === 0 ? "raised" : "base"}
+          tone={index % 2 === 0 ? "light" : "base"}
           ariaLabelledBy={`${category.key}-heading`}
         >
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -64,26 +64,26 @@ export default function ServicesPage() {
               </Reveal>
             </div>
 
-            <ul className="grid gap-px overflow-hidden border border-white/8 bg-white/8 sm:grid-cols-2 lg:col-span-8">
+            <ul className="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:col-span-8">
               {servicesByCategory(category.key).map((service, i) => (
                 <Reveal
                   as="li"
                   key={service.slug}
                   delay={(i % 2) * 0.07}
                   y={18}
-                  className={index % 2 === 0 ? "bg-navy-900" : "bg-navy-850"}
+                  className={"bg-card"}
                 >
                   <Link
                     href={`/services/${service.slug}`}
-                    className="group flex h-full flex-col p-7 transition-colors duration-300 ease-brand hover:bg-navy-800"
+                    className="group flex h-full flex-col p-7 transition-colors duration-300 ease-brand hover:bg-card-hover"
                   >
                     <span
                       aria-hidden="true"
-                      className="grid h-11 w-11 shrink-0 place-items-center border border-gold-500/25 text-gold-500 transition-all duration-300 ease-brand group-hover:border-gold-500/70 group-hover:bg-gold-500/10 group-hover:text-gold-400"
+                      className="grid h-11 w-11 shrink-0 place-items-center border border-accent/25 text-accent transition-all duration-300 ease-brand group-hover:border-accent/70 group-hover:bg-accent/10 group-hover:text-accent-soft"
                     >
                       <ServiceIcon name={service.icon} className="h-5 w-5" />
                     </span>
-                    <h3 className="mt-6 font-display text-lg leading-snug text-ink-50 transition-colors duration-300 group-hover:text-gold-400">
+                    <h3 className="mt-6 font-display text-lg leading-snug text-ink-50 transition-colors duration-300 group-hover:text-accent-soft">
                       {service.name}
                     </h3>
                     <p className="mt-3 grow text-sm leading-relaxed text-ink-400">
@@ -91,7 +91,7 @@ export default function ServicesPage() {
                     </p>
                     <span
                       aria-hidden="true"
-                      className="mt-6 inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-[0.14em] text-ink-400 uppercase transition-colors duration-300 group-hover:text-gold-400"
+                      className="mt-6 inline-flex items-center gap-2 font-sans text-xs font-semibold tracking-[0.14em] text-ink-400 uppercase transition-colors duration-300 group-hover:text-accent-soft"
                     >
                       Learn more
                       <ArrowIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-brand group-hover:translate-x-1" />
@@ -104,7 +104,7 @@ export default function ServicesPage() {
         </Section>
       ))}
 
-      <Section tone="raised">
+      <Section tone="base">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-2xl leading-snug font-medium sm:text-3xl">
@@ -117,7 +117,7 @@ export default function ServicesPage() {
             </p>
             <Link
               href={site.phone.href}
-              className="group mt-7 inline-flex items-center gap-2 font-sans text-sm font-semibold tracking-wide text-gold-400 transition-colors hover:text-gold-300"
+              className="group mt-7 inline-flex items-center gap-2 font-sans text-sm font-semibold tracking-wide text-accent transition-colors hover:text-accent-soft"
             >
               Call {site.phone.display}
               <ArrowIcon className="transition-transform duration-300 ease-brand group-hover:translate-x-1" />

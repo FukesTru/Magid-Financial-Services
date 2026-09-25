@@ -30,7 +30,7 @@ export function Hero() {
           <Reveal>
             <p className="eyebrow flex flex-wrap items-center gap-x-3 gap-y-1">
               <span>Huntingdon Valley, PA</span>
-              <span aria-hidden="true" className="hidden text-gold-500/40 sm:inline">
+              <span aria-hidden="true" className="hidden text-accent/40 sm:inline">
                 &bull;
               </span>
               <span>Payroll, Tax &amp; Accounting</span>
@@ -40,7 +40,7 @@ export function Hero() {
           <Reveal delay={0.08}>
             <h1 className="mt-7 font-display text-[2rem] leading-[1.1] font-medium text-ink-50 sm:text-[2.75rem] md:text-5xl lg:text-[3.75rem] xl:text-[4rem]">
               Expert Payroll &amp; Tax Solutions&nbsp;&mdash;
-              <span className="mt-2 block font-normal text-gold-400 italic">
+              <span className="mt-2 block font-normal text-accent italic">
                 Maximizing Your Success, Minimizing Your Stress
               </span>
             </h1>

@@ -73,7 +73,7 @@ export function PhotoFrame({
   sizes?: string;
 }) {
   return (
-    <figure className={`relative overflow-hidden border border-white/8 ${className}`}>
+    <figure className={`relative overflow-hidden border border-line ${className}`}>
       <Image
         src={photo.src}
         alt={photo.alt}

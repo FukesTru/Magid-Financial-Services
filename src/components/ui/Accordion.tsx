@@ -19,7 +19,7 @@ export function Accordion({ items }: { items: readonly AccordionItem[] }) {
   const baseId = useId();
 
   return (
-    <div className="divide-y divide-white/8 border-y border-white/8">
+    <div className="divide-y divide-line border-y border-line">
       {items.map((item, i) => {
         const isOpen = openIndex === i;
         const buttonId = `${baseId}-q-${i}`;
@@ -39,8 +39,8 @@ export function Accordion({ items }: { items: readonly AccordionItem[] }) {
                 <span
                   className={`font-display text-lg leading-snug transition-colors duration-200 sm:text-xl ${
                     isOpen
-                      ? "text-gold-400"
-                      : "text-ink-50 group-hover:text-gold-400"
+                      ? "text-accent"
+                      : "text-ink-50 group-hover:text-accent-soft"
                   }`}
                 >
                   {item.question}
@@ -49,8 +49,8 @@ export function Accordion({ items }: { items: readonly AccordionItem[] }) {
                   aria-hidden="true"
                   className={`mt-1 grid h-7 w-7 shrink-0 place-items-center rounded-full border transition-all duration-300 ease-brand ${
                     isOpen
-                      ? "rotate-45 border-gold-500 text-gold-400"
-                      : "border-white/15 text-ink-400 group-hover:border-gold-500/50 group-hover:text-gold-400"
+                      ? "rotate-45 border-accent text-accent"
+                      : "border-white/15 text-ink-400 group-hover:border-accent/50 group-hover:text-accent-soft"
                   }`}
                 >
                   <svg viewBox="0 0 14 14" className="h-3.5 w-3.5" fill="none">

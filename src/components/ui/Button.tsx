@@ -16,10 +16,10 @@ const variants: Record<Variant, string> = {
     "hover:bg-gold-400 hover:shadow-[0_8px_24px_-8px_rgba(201,168,76,0.55)]",
   /** Secondary action beside a gold button. */
   outline:
-    "border border-gold-500/40 text-gold-300 hover:border-gold-500 " +
-    "hover:bg-gold-500/10 hover:text-gold-200",
+    "border border-accent/40 text-accent hover:border-accent " +
+    "hover:bg-accent/10 hover:text-accent-soft",
   /** Tertiary — reads as a link with a target the size of a button. */
-  quiet: "text-ink-200 hover:text-gold-400",
+  quiet: "text-ink-200 hover:text-accent-soft",
 };
 
 const sizes: Record<Size, string> = {

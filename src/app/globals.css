@@ -29,6 +29,21 @@
   --color-ink-300: #a4b0c2; /* body copy                                */
   --color-ink-400: #7b8799; /* muted / captions                         */
 
+  /* --- Semantic surface tokens ----------------------------------------
+     These are what components should use. They are redefined inside a light
+     section (see [data-surface="light"] below), so a card, a hairline or an
+     accent automatically suits whichever band it sits in. Components that
+     reach past these for a raw navy or gold will not flip.               */
+  --color-card: #0e1524; /* card face on the current surface            */
+  --color-card-hover: #1b2739;
+  --color-line: #1c2331; /* hairlines, dividers, grid seams             */
+  --color-accent: #c9a84c; /* gold for TEXT, rules and icon strokes     */
+  --color-accent-soft: #e2c877; /* its hover                            */
+
+  /* --- Light surfaces --------------------------------------------------- */
+  --color-paper: #f5f7fa;
+  --color-paper-deep: #eceff5;
+
   /* --- Typography ----------------------------------------------------- */
   --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
@@ -88,10 +103,42 @@
 
   /* A single, consistent focus treatment across the whole site. */
   :focus-visible {
-    outline: 2px solid var(--color-gold-500);
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
     border-radius: 2px;
   }
+}
+
+/* =========================================================================
+   LIGHT SURFACES
+
+   Section sets data-surface="light" on a light band. Redefining the semantic
+   tokens here means every component inside flips without knowing it is on a
+   light background — `text-ink-300` is still "body copy on this surface",
+   it just resolves to a dark slate instead of a pale one.
+
+   The accent darkens because it has to: the brand gold reads 2.29:1 on white,
+   which fails for text at any size. The darker gold measures above 5:1 while
+   staying recognisably the same colour. Gold BUTTON fills keep the bright
+   brand value, since there the gold is the background and the text on it is
+   navy.
+   ========================================================================= */
+
+[data-surface="light"] {
+  --color-ink-50: #0a0f1a; /* headings          */
+  --color-ink-200: #26314a; /* high-emphasis     */
+  --color-ink-300: #45536b; /* body              */
+  /* #6a7890 measured 4.47:1 on white and 3.88:1 on the deeper paper —
+     under the 4.5 body-text minimum on both. This clears it on all three
+     light grounds. */
+  --color-ink-400: #5c6982; /* muted             */
+
+  --color-card: #ffffff;
+  --color-card-hover: #f8fafc;
+  --color-line: #e2e7ee;
+
+  --color-accent: #7a6224;
+  --color-accent-soft: #5d4a17;
 }
 
 /* =========================================================================
@@ -105,7 +152,7 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-gold-500);
+  color: var(--color-accent);
 }
 
 /* Hairline border used for cards and section seams. */

@@ -61,7 +61,7 @@ export default async function ServicePage({
             <nav aria-label="Breadcrumb" className="mb-8">
               <ol className="flex flex-wrap items-center gap-2 font-sans text-xs tracking-wide text-ink-400">
                 <li>
-                  <Link href="/services" className="hover:text-gold-400">
+                  <Link href="/services" className="hover:text-accent-soft">
                     Services
                   </Link>
                 </li>
@@ -73,7 +73,7 @@ export default async function ServicePage({
             <div className="flex items-start gap-5">
               <span
                 aria-hidden="true"
-                className="hidden h-14 w-14 shrink-0 place-items-center border border-gold-500/35 text-gold-500 sm:grid"
+                className="hidden h-14 w-14 shrink-0 place-items-center border border-accent/35 text-accent sm:grid"
               >
                 <ServiceIcon name={service.icon} className="h-6 w-6" />
               </span>
@@ -105,7 +105,7 @@ export default async function ServicePage({
       {detail && (
         <>
           {/* Scope */}
-          <Section tone="raised" ariaLabelledBy="covers-heading">
+          <Section tone="light" ariaLabelledBy="covers-heading">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-4">
                 <Reveal>
@@ -125,7 +125,7 @@ export default async function ServicePage({
                           viewBox="0 0 16 16"
                           fill="none"
                           aria-hidden="true"
-                          className="mt-1 h-4 w-4 shrink-0 text-gold-500"
+                          className="mt-1 h-4 w-4 shrink-0 text-accent"
                         >
                           <path
                             d="m3.5 8.5 3 3 6-7"
@@ -169,7 +169,7 @@ export default async function ServicePage({
                     <li key={item} className="flex items-start gap-3">
                       <span
                         aria-hidden="true"
-                        className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-gold-500"
+                        className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent"
                       />
                       <span className="text-[0.9375rem] leading-relaxed text-ink-300">
                         {item}
@@ -189,7 +189,7 @@ export default async function ServicePage({
 
       {/* Related */}
       {related.length > 0 && (
-        <Section tone="raised" ariaLabelledBy="related-heading">
+        <Section tone="light" ariaLabelledBy="related-heading">
           <Reveal>
             <SectionHeading
               eyebrow={category?.label}
@@ -198,26 +198,26 @@ export default async function ServicePage({
               lead={category?.blurb}
             />
           </Reveal>
-          <ul className="mt-12 grid gap-px overflow-hidden border border-white/8 bg-white/8 sm:grid-cols-3">
+          <ul className="mt-12 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-3">
             {related.map((s, i) => (
               <Reveal
                 as="li"
                 key={s.slug}
                 delay={i * 0.07}
                 y={18}
-                className="bg-navy-900"
+                className="bg-card"
               >
                 <Link
                   href={`/services/${s.slug}`}
-                  className="group flex h-full flex-col p-7 transition-colors duration-300 ease-brand hover:bg-navy-800"
+                  className="group flex h-full flex-col p-7 transition-colors duration-300 ease-brand hover:bg-card-hover"
                 >
                   <span
                     aria-hidden="true"
-                    className="grid h-11 w-11 shrink-0 place-items-center border border-gold-500/25 text-gold-500 transition-all duration-300 ease-brand group-hover:border-gold-500/70 group-hover:text-gold-400"
+                    className="grid h-11 w-11 shrink-0 place-items-center border border-accent/25 text-accent transition-all duration-300 ease-brand group-hover:border-accent/70 group-hover:text-accent-soft"
                   >
                     <ServiceIcon name={s.icon} className="h-5 w-5" />
                   </span>
-                  <h3 className="mt-6 font-display text-lg leading-snug text-ink-50 transition-colors duration-300 group-hover:text-gold-400">
+                  <h3 className="mt-6 font-display text-lg leading-snug text-ink-50 transition-colors duration-300 group-hover:text-accent-soft">
                     {s.name}
                   </h3>
                   <p className="mt-3 grow text-sm leading-relaxed text-ink-400">

@@ -43,7 +43,7 @@ export default function ContactPage() {
               </h2>
               <div
                 aria-hidden="true"
-                className="mt-4 h-px w-10 bg-gold-500/50"
+                className="mt-4 h-px w-10 bg-accent/50"
               />
 
               <address className="mt-7 space-y-6 text-sm not-italic">
@@ -64,7 +64,7 @@ export default function ContactPage() {
                   <p className="mt-2">
                     <a
                       href={site.phone.href}
-                      className="text-ink-200 transition-colors hover:text-gold-400"
+                      className="text-ink-200 transition-colors hover:text-accent-soft"
                     >
                       {site.phone.display}
                     </a>
@@ -77,7 +77,7 @@ export default function ContactPage() {
                   <p className="mt-2">
                     <a
                       href={`mailto:${site.email}`}
-                      className="text-ink-200 transition-colors hover:text-gold-400"
+                      className="text-ink-200 transition-colors hover:text-accent-soft"
                     >
                       {site.email}
                     </a>
@@ -97,7 +97,7 @@ export default function ContactPage() {
               <h2 className="mt-12 font-display text-xl text-ink-50">
                 What happens next
               </h2>
-              <div aria-hidden="true" className="mt-4 h-px w-10 bg-gold-500/50" />
+              <div aria-hidden="true" className="mt-4 h-px w-10 bg-accent/50" />
               <ol className="mt-7 space-y-6">
                 {[
                   {
@@ -116,7 +116,7 @@ export default function ContactPage() {
                   <li key={step.title} className="flex gap-4">
                     <span
                       aria-hidden="true"
-                      className="font-display text-xl leading-none text-gold-500/40"
+                      className="font-display text-xl leading-none text-accent/40"
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>

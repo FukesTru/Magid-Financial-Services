@@ -154,9 +154,9 @@ export function SiteHeader() {
   const solid = scrolled || menuOpen || servicesOpen;
 
   const linkClass = (active: boolean) =>
-    `relative py-2 font-sans text-sm transition-colors duration-200 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-gold-500 after:transition-transform after:duration-300 after:ease-brand hover:after:scale-x-100 ${
+    `relative py-2 font-sans text-sm transition-colors duration-200 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 after:ease-brand hover:after:scale-x-100 ${
       active
-        ? "text-gold-400 after:scale-x-100"
+        ? "text-accent after:scale-x-100"
         : "text-ink-200 hover:text-ink-50"
     }`;
 
@@ -165,7 +165,7 @@ export function SiteHeader() {
       data-site-header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-brand ${
         solid
-          ? "border-b border-white/8 bg-navy-950/92 backdrop-blur-md"
+          ? "border-b border-line bg-navy-950/92 backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -223,7 +223,7 @@ export function SiteHeader() {
                     // disorienting than a menu springing open while tabbing.
                     ref={triggerRef}
                     onClick={toggleServices}
-                    className="grid h-6 w-5 place-items-center text-ink-400 transition-colors hover:text-gold-400"
+                    className="grid h-6 w-5 place-items-center text-ink-400 transition-colors hover:text-accent-soft"
                   >
                     <svg
                       viewBox="0 0 12 12"
@@ -251,7 +251,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-6 lg:flex">
           <a
             href={site.phone.href}
-            className="font-sans text-sm font-medium text-ink-200 transition-colors hover:text-gold-400"
+            className="font-sans text-sm font-medium text-ink-200 transition-colors hover:text-accent-soft"
           >
             {site.phone.display}
           </a>
@@ -302,7 +302,7 @@ export function SiteHeader() {
         ref={panelRef}
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}
-        className="absolute inset-x-0 top-full hidden border-t border-white/8 bg-navy-950 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9)] lg:block"
+        className="absolute inset-x-0 top-full hidden border-t border-line bg-navy-950 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9)] lg:block"
       >
         <ServicesPanel onNavigate={() => setServicesOpen(false)} />
       </div>
@@ -311,13 +311,13 @@ export function SiteHeader() {
       <div
         id="mobile-menu"
         hidden={!menuOpen}
-        className="h-[calc(100svh-5rem)] overflow-y-auto border-t border-white/8 bg-navy-950 lg:hidden"
+        className="h-[calc(100svh-5rem)] overflow-y-auto border-t border-line bg-navy-950 lg:hidden"
       >
         <nav aria-label="Mobile" className="px-6 py-8 sm:px-8">
           <ul className="flex flex-col">
             {primaryNav.map((item) =>
               item.href === "/services" ? (
-                <li key={item.href} className="border-b border-white/6">
+                <li key={item.href} className="border-b border-line">
                   <div className="flex items-center justify-between">
                     <Link
                       href={item.href}
@@ -367,7 +367,7 @@ export function SiteHeader() {
                       <div className="space-y-6 pb-6">
                         {serviceCategories.map((category) => (
                           <div key={category.key}>
-                            <p className="font-sans text-[0.625rem] font-semibold tracking-[0.18em] text-gold-500 uppercase">
+                            <p className="font-sans text-[0.625rem] font-semibold tracking-[0.18em] text-accent uppercase">
                               {category.label}
                             </p>
                             <ul className="mt-3 space-y-2.5">
@@ -379,7 +379,7 @@ export function SiteHeader() {
                                   >
                                     <ServiceIcon
                                       name={s.icon}
-                                      className="h-4 w-4 shrink-0 text-gold-500/70"
+                                      className="h-4 w-4 shrink-0 text-accent/70"
                                     />
                                     {s.name}
                                   </Link>
@@ -393,7 +393,7 @@ export function SiteHeader() {
                   </div>
                 </li>
               ) : (
-                <li key={item.href} className="border-b border-white/6">
+                <li key={item.href} className="border-b border-line">
                   <Link
                     href={item.href}
                     className="block py-4 font-display text-xl text-ink-50"

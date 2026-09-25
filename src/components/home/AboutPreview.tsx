@@ -19,7 +19,7 @@ export function AboutPreview() {
               title={
                 <>
                   A practice built on
-                  <span className="text-gold-400 italic"> knowing your file</span>
+                  <span className="text-accent italic"> knowing your file</span>
                 </>
               }
             />
@@ -76,7 +76,7 @@ export function AboutPreview() {
           <Reveal delay={0.18}>
             <Link
               href="/about"
-              className="group mt-10 inline-flex items-center gap-2 font-sans text-sm font-semibold tracking-wide text-gold-400 transition-colors hover:text-gold-300"
+              className="group mt-10 inline-flex items-center gap-2 font-sans text-sm font-semibold tracking-wide text-accent transition-colors hover:text-accent-soft"
             >
               Learn more about us
               <ArrowIcon className="transition-transform duration-300 ease-brand group-hover:translate-x-1" />

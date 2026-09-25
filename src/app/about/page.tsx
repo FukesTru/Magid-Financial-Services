@@ -46,7 +46,7 @@ export default function AboutPage() {
               <p className="eyebrow">About the firm</p>
               <h1 className="mt-6 font-display text-4xl leading-[1.12] font-medium text-ink-50 sm:text-5xl">
                 A small practice,
-                <span className="text-gold-400 italic"> on purpose</span>
+                <span className="text-accent italic"> on purpose</span>
               </h1>
               <GoldRule weight="bold" className="mt-8 w-32" />
               <p className="mt-8 text-lg leading-relaxed text-ink-300">
@@ -62,7 +62,7 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <Section tone="raised" ariaLabelledBy="story-heading">
+      <Section tone="light" ariaLabelledBy="story-heading">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <Reveal>
@@ -119,14 +119,14 @@ export default function AboutPage() {
             <Reveal as="li" key={step.title} delay={(i % 2) * 0.08} y={20}>
               <span
                 aria-hidden="true"
-                className="block font-display text-4xl leading-none text-gold-500/35"
+                className="block font-display text-4xl leading-none text-accent/35"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-5 font-display text-xl leading-snug text-ink-50">
                 {step.title}
               </h3>
-              <div aria-hidden="true" className="mt-4 h-px w-10 bg-gold-500/50" />
+              <div aria-hidden="true" className="mt-4 h-px w-10 bg-accent/50" />
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-300">
                 {step.body}
               </p>
@@ -136,7 +136,7 @@ export default function AboutPage() {
       </Section>
 
       {/* Why clients stay */}
-      <Section tone="raised" ariaLabelledBy="values-heading">
+      <Section tone="light" ariaLabelledBy="values-heading">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <Reveal>
@@ -167,7 +167,7 @@ export default function AboutPage() {
                 </h3>
                 <div
                   aria-hidden="true"
-                  className="mt-4 h-px w-10 bg-gold-500/50"
+                  className="mt-4 h-px w-10 bg-accent/50"
                 />
                 <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-300">
                   {prop.body}
@@ -211,7 +211,7 @@ export default function AboutPage() {
                 <p className="mt-4">
                   <a
                     href={site.phone.href}
-                    className="text-gold-400 transition-colors hover:text-gold-300"
+                    className="text-accent transition-colors hover:text-accent-soft"
                   >
                     {site.phone.display}
                   </a>
@@ -220,7 +220,7 @@ export default function AboutPage() {
                   </span>
                   <a
                     href={`mailto:${site.email}`}
-                    className="text-gold-400 transition-colors hover:text-gold-300"
+                    className="text-accent transition-colors hover:text-accent-soft"
                   >
                     {site.email}
                   </a>

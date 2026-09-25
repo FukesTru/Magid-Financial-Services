@@ -21,9 +21,9 @@ export function Wordmark({
     >
       <span
         aria-hidden="true"
-        className="grid h-10 w-10 shrink-0 place-items-center border border-gold-500/45 transition-colors duration-300 group-hover:border-gold-500"
+        className="grid h-10 w-10 shrink-0 place-items-center border border-accent/45 transition-colors duration-300 group-hover:border-accent"
       >
-        <span className="font-display text-lg leading-none text-gold-500">
+        <span className="font-display text-lg leading-none text-accent">
           {site.initials}
         </span>
       </span>

@@ -16,8 +16,8 @@ export function GoldRule({
   const height = weight === "bold" ? "h-0.5" : "h-px";
   const gradient =
     align === "center"
-      ? "bg-gradient-to-r from-gold-500/0 via-gold-500 to-gold-500/0"
-      : "bg-gradient-to-r from-gold-500 to-gold-500/0";
+      ? "bg-gradient-to-r from-accent/0 via-accent to-accent/0"
+      : "bg-gradient-to-r from-accent to-accent/0";
 
   return (
     <span

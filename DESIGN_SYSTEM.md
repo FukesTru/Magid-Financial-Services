@@ -44,6 +44,37 @@ Never hard-code a hex value in a component.
 | `ink-300` | `#a4b0c2` | **Default body copy**                   |
 | `ink-400` | `#7b8799` | Captions, card descriptions, footer meta |
 
+### Light surfaces
+
+The page alternates deep navy bands with light "paper" ones. A light band is
+`<Section tone="light">` (or `lightDeep`), which sets `data-surface="light"`;
+that redefines the semantic tokens below for everything inside, so components
+need no knowledge of which ground they are on.
+
+| Token                 | On navy   | On paper  | Use                          |
+| --------------------- | --------- | --------- | ---------------------------- |
+| `ink-50`              | `#f6f8fb` | `#0a0f1a` | Headings                     |
+| `ink-200`             | `#ccd5e2` | `#26314a` | High-emphasis body           |
+| `ink-300`             | `#a4b0c2` | `#45536b` | Body copy                    |
+| `ink-400`             | `#7b8799` | `#5c6982` | Captions, muted              |
+| `card` / `card-hover` | `#0e1524` | `#ffffff` | Card faces inside a grid     |
+| `line`                | `#1c2331` | `#e2e7ee` | Hairlines, dividers, seams   |
+| `accent`              | `#c9a84c` | `#7a6224` | Gold **text**, rules, icons  |
+
+**Use the semantic tokens, not the raw palette**, for anything inside a
+section: `bg-card`, `border-line`, `text-accent`, `text-ink-300`. A component
+that reaches for `bg-navy-850` or `text-gold-500` will not flip and will be
+invisible or illegible on a light band.
+
+The accent darkens on paper because it has to. The brand gold measures 2.29:1
+on white, which fails for text at any size; the darker gold measures above 5:1.
+Gold **button fills** keep the bright brand value — there the gold is the
+background and the navy text on it is what has to be readable.
+
+The muted tone is `#5c6982` rather than something lighter because anything
+paler fails the 4.5:1 body minimum against the deeper paper ground. If you
+change any of these, re-measure; do not eyeball it.
+
 ### Rules of use
 
 - Gold is punctuation, not paint. Roughly one gold element per view: a rule, an

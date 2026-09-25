@@ -35,7 +35,7 @@ export function WhyChooseUs() {
             <Reveal as="li" key={prop.title} delay={(i % 2) * 0.08} y={20}>
               <span
                 aria-hidden="true"
-                className="block font-display text-4xl leading-none text-gold-500/35"
+                className="block font-display text-4xl leading-none text-accent/35"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -44,7 +44,7 @@ export function WhyChooseUs() {
               </h3>
               <div
                 aria-hidden="true"
-                className="mt-4 h-px w-10 bg-gold-500/50"
+                className="mt-4 h-px w-10 bg-accent/50"
               />
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-300">
                 {prop.body}

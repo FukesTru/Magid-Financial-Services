@@ -14,7 +14,7 @@ export function SiteFooter() {
   const credits = photoCredits();
 
   return (
-    <footer className="border-t border-white/8 bg-navy-950">
+    <footer className="border-t border-line bg-navy-950">
       <Container className="py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           {/* Brand + address */}
@@ -35,7 +35,7 @@ export function SiteFooter() {
               <p>
                 <a
                   href={site.phone.href}
-                  className="text-ink-200 transition-colors hover:text-gold-400"
+                  className="text-ink-200 transition-colors hover:text-accent-soft"
                 >
                   {site.phone.display}
                 </a>
@@ -43,7 +43,7 @@ export function SiteFooter() {
               <p>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-ink-200 transition-colors hover:text-gold-400"
+                  className="text-ink-200 transition-colors hover:text-accent-soft"
                 >
                   {site.email}
                 </a>
@@ -56,7 +56,7 @@ export function SiteFooter() {
                   <li key={s.href}>
                     <a
                       href={s.href}
-                      className="text-sm text-ink-400 transition-colors hover:text-gold-400"
+                      className="text-sm text-ink-400 transition-colors hover:text-accent-soft"
                       rel="noopener noreferrer"
                       target="_blank"
                     >
@@ -81,7 +81,7 @@ export function SiteFooter() {
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="text-sm text-ink-300 transition-colors hover:text-gold-400"
+                    className="text-sm text-ink-300 transition-colors hover:text-accent-soft"
                   >
                     {service.name}
                   </Link>
@@ -103,7 +103,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-ink-300 transition-colors hover:text-gold-400"
+                    className="text-sm text-ink-300 transition-colors hover:text-accent-soft"
                   >
                     {item.label}
                   </Link>
@@ -112,7 +112,7 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/#faq"
-                  className="text-sm text-ink-300 transition-colors hover:text-gold-400"
+                  className="text-sm text-ink-300 transition-colors hover:text-accent-soft"
                 >
                   FAQ
                 </Link>
@@ -121,7 +121,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/8 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-ink-400">
             &copy; {year} {site.name}. All rights reserved.
           </p>
@@ -143,7 +143,7 @@ export function SiteFooter() {
                   href={credit.url}
                   rel="noopener noreferrer nofollow"
                   target="_blank"
-                  className="underline decoration-white/20 underline-offset-2 transition-colors hover:text-gold-400"
+                  className="underline decoration-white/20 underline-offset-2 transition-colors hover:text-accent-soft"
                 >
                   {credit.name}
                 </a>
@@ -154,7 +154,7 @@ export function SiteFooter() {
               href="https://unsplash.com"
               rel="noopener noreferrer nofollow"
               target="_blank"
-              className="underline decoration-white/20 underline-offset-2 transition-colors hover:text-gold-400"
+              className="underline decoration-white/20 underline-offset-2 transition-colors hover:text-accent-soft"
             >
               Unsplash
             </a>

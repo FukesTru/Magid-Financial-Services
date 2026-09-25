@@ -18,7 +18,7 @@ export function Testimonials() {
   if (reviews.length === 0) return null;
 
   return (
-    <Section tone="raised" ariaLabelledBy="testimonials-heading">
+    <Section tone="light" ariaLabelledBy="testimonials-heading">
       <Reveal>
         <SectionHeading
           eyebrow="Client reviews"
@@ -29,14 +29,14 @@ export function Testimonials() {
         />
       </Reveal>
 
-      <ul className="mt-14 grid gap-px overflow-hidden border border-white/8 bg-white/8 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-14 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {reviews.map((review, i) => (
           <Reveal
             as="li"
             key={review.name + i}
             delay={(i % 3) * 0.07}
             y={18}
-            className="bg-navy-900"
+            className="bg-card"
           >
             <figure className="flex h-full flex-col p-8">
               <Stars />
@@ -48,7 +48,7 @@ export function Testimonials() {
                   )}
                 </p>
               </blockquote>
-              <figcaption className="mt-7 border-t border-white/8 pt-5">
+              <figcaption className="mt-7 border-t border-line pt-5">
                 <span className="block font-sans text-sm font-semibold text-ink-50">
                   {review.name}
                 </span>
@@ -68,7 +68,7 @@ export function Testimonials() {
             href={googleReviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 font-sans text-sm font-semibold tracking-wide text-gold-400 transition-colors hover:text-gold-300"
+            className="group inline-flex items-center gap-2 font-sans text-sm font-semibold tracking-wide text-accent transition-colors hover:text-accent-soft"
           >
             Read every review on Google
             <ArrowIcon className="transition-transform duration-300 ease-brand group-hover:translate-x-1" />
@@ -85,7 +85,7 @@ function Stars() {
     <div
       role="img"
       aria-label="Rated 5 out of 5"
-      className="flex items-center gap-1 text-gold-500"
+      className="flex items-center gap-1 text-accent"
     >
       {[0, 1, 2, 3, 4].map((i) => (
         <svg key={i} viewBox="0 0 16 16" aria-hidden="true" className="h-3.5 w-3.5">

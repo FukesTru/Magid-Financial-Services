@@ -38,14 +38,14 @@ export function ComingSoon({
             This page is being written. In the meantime, call{" "}
             <a
               href={site.phone.href}
-              className="text-gold-400 transition-colors hover:text-gold-300"
+              className="text-accent transition-colors hover:text-accent-soft"
             >
               {site.phone.display}
             </a>{" "}
             or email{" "}
             <a
               href={`mailto:${site.email}`}
-              className="text-gold-400 transition-colors hover:text-gold-300"
+              className="text-accent transition-colors hover:text-accent-soft"
             >
               {site.email}
             </a>{" "}
