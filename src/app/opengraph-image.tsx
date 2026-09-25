@@ -10,10 +10,12 @@ export const contentType = "image/png";
    characters we ask for, so these double as the subset request — anything
    rendered but not listed here would silently fall back to another face. */
 const MONOGRAM = "M";
-const HEADLINE = "Your taxes, handled.";
-const TAGLINE = "Your payroll, on time.";
+const HEADLINE = "Filed right. Filed on time.";
+const TAGLINE = "Since 1989.";
 const LOCKUP = "MAGID FINANCIAL SERVICES";
-const FOOTER = `${site.address.locality}, ${site.address.region}  ·  Serving all 50 states since ${site.foundedYear}  ·  ${site.phone.display}`;
+// The year is already the headline's second line; repeating it here wasted
+// the one place the card could name the services.
+const FOOTER = `${site.address.locality}, ${site.address.region}  ·  Payroll, tax & accounting  ·  All 50 states  ·  ${site.phone.display}`;
 
 /**
  * Fetch a Google font as raw TTF for the image renderer.

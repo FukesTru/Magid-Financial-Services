@@ -42,9 +42,9 @@ export function Hero() {
                 lib/site.ts as a brand asset; as an h1 it ran to twelve words
                 and read like a brochure cover. */}
             <h1 className="mt-7 font-display text-[2.5rem] leading-[1.06] font-medium text-ink-50 sm:text-[3.25rem] md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem]">
-              Your taxes, handled.
+              Filed right. Filed on time.
               <span className="mt-2 block font-normal text-accent italic">
-                Your payroll, on time.
+                Since {site.foundedYear}.
               </span>
             </h1>
           </Reveal>
@@ -56,10 +56,9 @@ export function Hero() {
           <Reveal delay={0.22}>
             <p className="mt-9 max-w-2xl text-lg leading-relaxed text-ink-300 sm:text-xl">
               Somebody has to read the notices, hit the deadlines and know which
-              deductions are yours. Since {site.foundedYear},{" "}
-              <span className="text-ink-50">that has been us</span> &mdash; from
-              one office in Huntingdon Valley, for families and business owners
-              in all 50 states.
+              deductions are yours. For families and business owners in all 50
+              states, <span className="text-ink-50">that has been us</span>{" "}
+              &mdash; from one office in Huntingdon Valley.
             </p>
           </Reveal>
 
