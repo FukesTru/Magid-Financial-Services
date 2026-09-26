@@ -191,3 +191,34 @@
     transition: none !important;
   }
 }
+
+/*
+ * Guilloche engraving, painted through a CSS mask.
+ *
+ * The asset strokes itself in `currentColor`, but an external SVG loaded via
+ * <img> renders in its own isolated document where `currentColor` resolves to
+ * black — nothing the page says about colour reaches inside it. Used as a mask
+ * the relationship inverts: the strokes become the alpha channel and the paint
+ * comes from this element's own background, so one cached file serves the
+ * brass watermark on navy and the ink watermark on bone.
+ */
+@utility engrave {
+  -webkit-mask-image: var(--engrave-src);
+  mask-image: var(--engrave-src);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  background-color: currentColor;
+}
+
+/*
+ * Film grain. A flat navy field shows banding on wide gradients and reads as
+ * dead screen colour; a little tooth stops both. Desaturated, because raw
+ * feTurbulence is RGB noise and speckles colour into the palette.
+ */
+@utility film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}

@@ -1,27 +1,64 @@
 import { ArrowIcon, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Engraving } from "@/components/ui/Engraving";
 import { GoldRule } from "@/components/ui/GoldRule";
 import { Reveal } from "@/components/ui/Reveal";
 import { photos } from "@/lib/images";
 import { PhotoBackdrop } from "@/components/ui/Photo";
 import { site } from "@/lib/site";
 
+/**
+ * The hero is built as a stack of layers rather than a single flat fill,
+ * because a flat navy field reads as an unstyled background no matter how
+ * good the colour is. From back to front:
+ *
+ *   -z-30  optional photograph
+ *   -z-20  guilloche watermark, bleeding off the right edge
+ *   -z-20  ledger grid, faded out before it reaches the headline
+ *   -z-10  warm light from the upper left, grain, and the seam into TrustBar
+ *
+ * The light direction is deliberate and consistent: warm wash top-left, the
+ * engraving catching it on the right, the floor falling away at the bottom.
+ */
 export function Hero() {
   return (
     <section
       data-surface="dark"
-      className="relative isolate overflow-hidden bg-navy pt-32 pb-20 sm:pt-40 sm:pb-28 lg:min-h-[92svh] lg:pt-48 lg:pb-32">
-      {/* Optional photographic depth, sunk beneath the grid and gold wash. */}
+      className="relative isolate overflow-hidden bg-navy pt-32 pb-20 sm:pt-40 sm:pb-28 lg:min-h-[92svh] lg:pt-48 lg:pb-32"
+    >
       {photos.heroBackground && (
         <PhotoBackdrop photo={photos.heroBackground} priority />
       )}
 
-      {/* Layered ground: engraved ledger grid under a warm gold wash. */}
+      {/* The watermark. Cropped hard by the right edge so it reads as an
+          engraving the page is sitting on, not a circle floating in space. */}
+      <Engraving
+        variant="rosette"
+        className="top-[-22%] right-[-34%] -z-20 aspect-square w-[125%] text-brass opacity-[0.10] sm:w-[85%] lg:top-1/2 lg:right-[-16%] lg:w-[62%] lg:-translate-y-1/2 lg:opacity-[0.13]"
+      />
+
+      {/* Ledger grid, cut off before it reaches the text column. */}
       <div
         aria-hidden="true"
         className="ledger-grid absolute inset-0 -z-20 opacity-70 [mask-image:radial-gradient(70%_60%_at_50%_0%,black,transparent)]"
       />
-      <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
+
+      {/* Warm light from the upper left. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_18%_0%,color-mix(in_srgb,var(--color-brass)_15%,transparent)_0%,transparent_65%)]"
+      />
+      {/* Floor: the section darkens as it falls away. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(90%_55%_at_50%_120%,color-mix(in_srgb,#000_38%,transparent)_0%,transparent_70%)]"
+      />
+      {/* Tooth. Stops the wide gradients banding on 8-bit displays. */}
+      <div
+        aria-hidden="true"
+        className="film-grain absolute inset-0 -z-10 opacity-[0.035] mix-blend-overlay"
+      />
+      {/* Seam into the trust bar below. */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-navy"

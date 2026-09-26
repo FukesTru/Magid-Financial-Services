@@ -1,5 +1,6 @@
 import { ArrowIcon, ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Engraving } from "@/components/ui/Engraving";
 import { GoldRule } from "@/components/ui/GoldRule";
 import { Reveal } from "@/components/ui/Reveal";
 import { photos } from "@/lib/images";
@@ -15,6 +16,13 @@ export function ClosingCta() {
     >
       {photos.ctaBackground && <PhotoBackdrop photo={photos.ctaBackground} />}
 
+      {/* Centred behind the copy, so the call to action reads as though it is
+          stamped on the page rather than printed over a flat fill. */}
+      <Engraving
+        variant="rosette-fine"
+        className="top-1/2 left-1/2 -z-20 aspect-square w-[150%] -translate-x-1/2 -translate-y-1/2 text-brass opacity-[0.07] sm:w-[95%] lg:w-[62%]"
+      />
+
       <div
         aria-hidden="true"
         className="ledger-grid absolute inset-0 -z-20 opacity-60 [mask-image:radial-gradient(60%_70%_at_50%_100%,black,transparent)]"
@@ -22,6 +30,11 @@ export function ClosingCta() {
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_50%_100%,color-mix(in_srgb,var(--color-brass)_16%,transparent)_0%,transparent_70%)]"
+      />
+
+      <div
+        aria-hidden="true"
+        className="film-grain absolute inset-0 -z-10 opacity-[0.035] mix-blend-overlay"
       />
 
       <Container>

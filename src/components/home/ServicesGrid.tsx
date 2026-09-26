@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/Button";
+import { Engraving } from "@/components/ui/Engraving";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -41,8 +42,17 @@ export function ServicesGrid() {
           >
             <Link
               href={`/services/${service.slug}`}
-              className="group flex h-full flex-col p-7 transition-colors duration-300 ease-brand hover:bg-card-hover sm:p-8"
+              className="group relative isolate flex h-full flex-col overflow-hidden p-7 transition-colors duration-300 ease-brand hover:bg-card-hover sm:p-8"
             >
+              {/* Every service draws a different guilloche — the petal count
+                  runs 3 to 14 across the twelve — so a grid of cards reads as
+                  twelve engravings rather than one motif repeated. Anchored
+                  into the bottom-right corner and cropped by it. */}
+              <Engraving
+                variant={`motif-${service.slug}`}
+                className="right-[-18%] bottom-[-26%] -z-10 aspect-square w-[62%] text-accent opacity-[0.07] transition-opacity duration-500 ease-brand group-hover:opacity-[0.16]"
+              />
+
               <span
                 aria-hidden="true"
                 className="grid h-12 w-12 shrink-0 place-items-center border border-accent/25 text-accent transition-all duration-300 ease-brand group-hover:border-accent/70 group-hover:bg-accent/10 group-hover:text-accent-soft"

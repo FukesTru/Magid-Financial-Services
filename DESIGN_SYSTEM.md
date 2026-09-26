@@ -11,79 +11,69 @@ Tokens live in `src/app/globals.css` under `@theme`. Business facts live in
 
 ## 1. Color
 
-Defined as Tailwind theme tokens — use `bg-navy-900`, `text-gold-500`, etc.
-Never hard-code a hex value in a component.
+Defined as Tailwind theme tokens in `src/app/globals.css` — use `bg-bone`,
+`text-accent`, `border-line`. Never hard-code a hex value in a component.
 
-### Surfaces (deep navy ramp)
+The palette has two halves. **Raw** tokens name an actual colour. **Semantic**
+tokens name a *role*, and are redefined inside `[data-surface="dark"]`, so a
+component written against them works on either ground without knowing which
+one it is on.
 
-| Token       | Hex       | Use                                                     |
-| ----------- | --------- | ------------------------------------------------------- |
-| `navy-950`  | `#060a12` | Footer, trust bar, closing CTA — the deepest band        |
-| `navy-900`  | `#0a0f1a` | **Base page background.** The brand's default ground     |
-| `navy-850`  | `#0e1524` | Raised section band, service cards, stat cells           |
-| `navy-800`  | `#131c2e` | Card hover state                                         |
-| `navy-700`  | `#1b2739` | Elevated surfaces                                        |
-| `navy-600`  | `#253349` | Heavier dividers                                         |
+### Raw surfaces
 
-### Accent (gold)
+| Token          | Hex       | Use                                            |
+| -------------- | --------- | ---------------------------------------------- |
+| `bone`         | `#fbf9f5` | **Base page background.** Warm, never stark white |
+| `bone-raised`  | `#f3efe7` | Second light surface, for banding              |
+| `navy`         | `#0e1726` | Full-bleed accent band — the hero              |
+| `navy-deep`    | `#0a111d` | Footer, trust bar, closing CTA                 |
+| `navy-soft`    | `#16243a` | Card face on a navy band                       |
+| `brass`        | `#c9a84c` | Bright brand gold — **fills**, and text on navy |
+| `brass-bright` | `#e2c877` | Hover on a brass fill                          |
 
-| Token      | Hex       | Use                                                      |
-| ---------- | --------- | -------------------------------------------------------- |
-| `gold-300` | `#efdda6` | Link hover on gold text                                   |
-| `gold-400` | `#e2c877` | Hover state on the primary button; hero tagline; headings |
-| `gold-500` | `#c9a84c` | **Primary accent.** Buttons, rules, eyebrows, icons       |
-| `gold-600` | `#a8873a` | Pressed / low-emphasis gold                               |
-| `gold-700` | `#856a2b` | Reserved                                                  |
+### Semantic tokens
 
-### Ink (text on dark)
+These flip. Left is what they resolve to on the default light ground; right is
+what `[data-surface="dark"]` redefines them to.
 
-| Token     | Hex       | Use                                     |
-| --------- | --------- | --------------------------------------- |
-| `ink-50`  | `#f6f8fb` | Headings                                |
-| `ink-200` | `#ccd5e2` | High-emphasis body, nav links           |
-| `ink-300` | `#a4b0c2` | **Default body copy**                   |
-| `ink-400` | `#7b8799` | Captions, card descriptions, footer meta |
+| Token         | On bone            | On navy            | Use                 |
+| ------------- | ------------------ | ------------------ | ------------------- |
+| `ink-50`      | `#0e1726` (17.1:1) | `#fbf9f5` (17.1:1) | Headings            |
+| `ink-200`     | `#27354c` (11.8:1) | `#cbd5e4`          | High-emphasis body  |
+| `ink-300`     | `#41506b` (7.7:1)  | `#a9b6ca` (8.8:1)  | **Default body copy** |
+| `ink-400`     | `#5e6d86` (5.0:1)  | `#8494ac`          | Captions, muted meta |
+| `card`        | `#ffffff`          | `#16243a`          | Card faces in a grid |
+| `card-hover`  | `#faf8f3`          | `#1d2e48`          | Card hover          |
+| `line`        | `#e5dfd3`          | `#22304a`          | Hairlines           |
+| `accent`      | `#7e632a` (5.3:1)  | `#c9a84c` (7.9:1)  | Brass **as text**   |
+| `accent-soft` | `#634d1e`          | `#e2c877`          | Accent hover        |
 
-### Light surfaces
+**Why `accent` has two values.** The brand gold `#c9a84c` measures 7.9:1 on
+navy and 1.9:1 on bone — a good text colour on one ground and illegible on the
+other. So `accent` darkens to `#7e632a` on light. Reach for `brass` when you
+want the brand gold as a **fill** (a button, a rule); reach for `accent` when
+you want it as **text**.
 
-The page alternates deep navy bands with light "paper" ones. A light band is
-`<Section tone="light">` (or `lightDeep`), which sets `data-surface="light"`;
-that redefines the semantic tokens below for everything inside, so components
-need no knowledge of which ground they are on.
+### Surface flipping
 
-| Token                 | On navy   | On paper  | Use                          |
-| --------------------- | --------- | --------- | ---------------------------- |
-| `ink-50`              | `#f6f8fb` | `#0a0f1a` | Headings                     |
-| `ink-200`             | `#ccd5e2` | `#26314a` | High-emphasis body           |
-| `ink-300`             | `#a4b0c2` | `#45536b` | Body copy                    |
-| `ink-400`             | `#7b8799` | `#5c6982` | Captions, muted              |
-| `card` / `card-hover` | `#0e1524` | `#ffffff` | Card faces inside a grid     |
-| `line`                | `#1c2331` | `#e2e7ee` | Hairlines, dividers, seams   |
-| `accent`              | `#c9a84c` | `#7a6224` | Gold **text**, rules, icons  |
+`<Section tone="navy">` (or `navyDeep`) sets `data-surface="dark"`, which
+redefines every semantic token for that whole subtree. A component that reaches
+for `bg-navy-soft` or `text-brass` directly will **not** flip.
 
-**Use the semantic tokens, not the raw palette**, for anything inside a
-section: `bg-card`, `border-line`, `text-accent`, `text-ink-300`. A component
-that reaches for `bg-navy-850` or `text-gold-500` will not flip and will be
-invisible or illegible on a light band.
-
-The accent darkens on paper because it has to. The brand gold measures 2.29:1
-on white, which fails for text at any size; the darker gold measures above 5:1.
-Gold **button fills** keep the bright brand value — there the gold is the
-background and the navy text on it is what has to be readable.
-
-The muted tone is `#5c6982` rather than something lighter because anything
-paler fails the 4.5:1 body minimum against the deeper paper ground. If you
-change any of these, re-measure; do not eyeball it.
+This is the one thing to get right. A hand-rolled `<section className="bg-navy">`
+that forgets `data-surface="dark"` renders its text in the *light* ink values on
+navy — invisible, not merely low-contrast. Six sections shipped that way once.
+Prefer `Section`; if you must hand-roll a navy band, set the attribute yourself.
 
 ### Rules of use
 
-- Gold is punctuation, not paint. Roughly one gold element per view: a rule, an
-  eyebrow, one solid button. If a screen has two gold buttons competing, one of
-  them is wrong.
-- Borders are hairlines: `hairline`, `hairline-t`, `hairline-b` utilities, or
-  `border-white/8`. Never a heavy or light-colored border.
-- Section banding alternates `navy-900` and `navy-850` (via `Section`'s `tone`),
-  with `navy-950` reserved for the trust bar, closing CTA, and footer.
+- Navy is punctuation. The page is bone; a navy band says "stop here". Hero,
+  trust bar, closing CTA, footer — that is the whole budget.
+- Brass is punctuation too. Roughly one brass element per view: a rule, an
+  eyebrow, one solid button. Two competing brass buttons means one is wrong.
+- Borders are hairlines: the `hairline*` utilities or `border-line`. Never a
+  heavy border.
+- Light banding alternates `paper` and `paperRaised` via `Section`'s `tone`.
 
 ---
 
@@ -109,10 +99,10 @@ text inherits Inter and `ink-300`.
 | Card H3        | `text-xl`, `leading-snug`                                                                    |
 | Lead paragraph | `text-base sm:text-lg`, `leading-relaxed`, `text-ink-300`                                    |
 | Body           | `text-[0.9375rem]` or `text-sm`, `leading-relaxed`                                           |
-| Eyebrow        | the `eyebrow` utility — 11px, 600, `0.2em` tracking, uppercase, `gold-500`                   |
+| Eyebrow        | the `eyebrow` utility — 11px, 600, `0.2em` tracking, uppercase, `accent`                   |
 
 Gold **italic** Playfair is the tagline voice. Use it for a short emphatic
-phrase inside a heading (`<span className="text-gold-400 italic">`), never for
+phrase inside a heading (`<span className="text-accent italic">`), never for
 body copy.
 
 ---
@@ -124,9 +114,9 @@ body copy.
   `tone` banding. Prefer it over hand-rolled `<section>` elements.
 - Editorial split for two-column sections: `lg:grid-cols-12` with a 4/8 or 5/7
   division — heading in the narrow column, content in the wide one.
-- Card groups use a 1px "gap grid": `grid gap-px border border-white/8
-  bg-white/8` with each cell on `bg-navy-850`. This gives hairline seams
-  without doubled borders.
+- Card groups use a 1px "gap grid": `grid gap-px border border-line bg-line`
+  with each cell on `bg-card`. This gives hairline seams without doubled
+  borders.
 
 ---
 
@@ -160,7 +150,52 @@ do not introduce an icon library, and do not mix in filled icons.
 
 ---
 
-## 4b. Photography
+## 4b. Engraving & photography
+
+### Engraving
+
+The site's decorative layer is **guilloche** — the interlaced line-work on
+banknotes, share certificates and bond coupons. It is the one ornamental
+language a financial firm owns outright, and these are the real construction
+(overlaid epitrochoids) rather than a picture of one. Assets live in
+`public/engraving/` and are generated by `scripts/generate-engravings.mjs`;
+see `IMAGERY.md` for the maths and the parameter constraints.
+
+Use it through `ui/Engraving.tsx`:
+
+```tsx
+<Engraving
+  variant="rosette"
+  className="... -z-20 aspect-square w-[62%] text-brass opacity-[0.13]"
+/>
+```
+
+| Variant | Where |
+| --- | --- |
+| `rosette` | Hero, bleeding off an edge |
+| `rosette-fine` | Closing CTA, centred like a seal |
+| `band` | Trust bar; tiles seamlessly on `repeat-x` |
+| `motif-<service-slug>` | Service cards, one per service |
+
+**It is painted as a CSS mask, not an `<img>`.** An external SVG loaded through
+`<img>` renders in its own isolated document, where `currentColor` resolves to
+black and nothing the page says about colour reaches inside it. As a mask the
+strokes become the alpha channel and the paint comes from the element's own
+colour — so one cached file serves the brass watermark on navy and the ink
+watermark on bone. That is what the `engrave` utility sets up.
+
+**Rules**
+
+- Always decorative: `aria-hidden`, `pointer-events-none`, negative z-index.
+  The component sets the first two for you.
+- Keep it under ~0.16 opacity and let it be **cropped** by its container.
+  A whole rosette floating in the middle of a section looks like clip art; an
+  engraving running off the edge looks like a watermark.
+- Any section holding one needs `relative isolate overflow-hidden`.
+- Re-run the contrast audit after changing opacity — the watermark tints the
+  ground beneath text. Both the resting and hover states were measured.
+
+### Photography
 
 Photography is **optional and additive**. Every slot in `src/lib/images.ts`
 defaults to `null`, and a null slot renders its section exactly as the
@@ -187,7 +222,7 @@ yields:
 | Text            | Contrast   | WCAG AA needs |
 | --------------- | ---------- | ------------- |
 | Headline `ink-50`   | 12.16:1 | 3.0:1         |
-| Tagline `gold-400`  | 7.86:1  | 3.0:1         |
+| Tagline `accent`    | 7.86:1  | 3.0:1         |
 | Body `ink-300`      | 5.90:1  | 4.5:1         |
 
 The closing CTA centres its text, so it sits differently against a
@@ -204,10 +239,13 @@ whose text band drops below 4.5:1 for body copy.
   readers skip them rather than announcing a filename.
 - Only the hero backdrop gets `priority` — it is the LCP element. Everything
   else lazy-loads.
-- Unsplash photos must credit the photographer. Credits declared on the slot
-  are collected and rendered once in the footer by `photoCredits()`.
-- `images.unsplash.com` is allow-listed in `next.config.ts`. Self-hosted files
-  in `public/images/` need no entry.
+- Self-host. Files in `public/images/` need no `next.config.ts` entry; a
+  remote host does. The site's own photography is generated and self-hosted.
+- `credit` is only for stock whose licence asks for attribution. Credits
+  declared on a slot are collected and rendered once in the footer by
+  `photoCredits()`.
+- No faces and no legible text in generated imagery — see `IMAGERY.md` for why
+  both matter on an accounting firm's site.
 
 ---
 
@@ -235,7 +273,7 @@ If you write a new animation, give it the same two escape hatches.
 ## 6. Accessibility
 
 - One `h1` per page; headings descend without skipping levels.
-- Focus is a 2px `gold-500` outline at 3px offset, set once on `:focus-visible`
+- Focus is a 2px `accent` outline at 3px offset, set once on `:focus-visible`
   in the base layer. Do not remove or restyle it per-component.
 - A "Skip to content" link is the first tab stop and targets `#main`.
 - Decorative SVG and ornament carry `aria-hidden="true"`; interactive controls

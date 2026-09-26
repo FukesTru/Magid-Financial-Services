@@ -2,29 +2,28 @@
  * Photography slots.
  *
  * ---------------------------------------------------------------------------
- * HOW TO ADD A PHOTO
+ * HOW TO ADD THE PHOTOGRAPHS
  *
- * Every slot below is `null`, and a null slot renders the section exactly as
- * it looks without photography — so the site is never broken or half-dressed
- * while these are being filled in.
+ * Every slot below is `null`, and a null slot renders its section exactly as
+ * it looks without photography — the guilloche engraving carries it — so the
+ * site is never broken or half-dressed while these are being filled in.
  *
- * For an Unsplash photo, open the photo page and use the direct file URL:
+ * The seven images these slots expect have already been generated and are
+ * sitting in the Higgsfield workspace, in the project "Magid Financial
+ * Services — site imagery". See IMAGERY.md for the filename each slot wants
+ * and the job that produced it. Download them, drop them in `public/images/`
+ * under those names, and fill in the slot:
  *
  *   heroBackground: {
- *     src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f",
- *     alt: "",                       // decorative background: empty alt
- *     width: 2400,
- *     height: 1600,
- *     credit: { name: "Photographer Name", url: "https://unsplash.com/@handle" },
+ *     src: "/images/hero-desk.jpg",
+ *     alt: "",                      // decorative background: empty alt
+ *     width: 2688,
+ *     height: 1520,
  *   },
  *
- * `credit` is not optional in practice: the Unsplash License asks that the
- * photographer be credited wherever the photo is used. Credits collected here
- * are rendered once, together, in the site footer.
- *
- * To self-host instead (no dependency on Unsplash's CDN at runtime, which is
- * the more robust choice for a client site), drop the file in `public/images/`
- * and set `src: "/images/whatever.jpg"`. Nothing else changes.
+ * `credit` is only needed for stock photography whose licence asks for
+ * attribution; credits collected here are rendered once, together, in the
+ * footer. Generated imagery does not need one.
  * ---------------------------------------------------------------------------
  */
 
@@ -45,17 +44,30 @@ export type SitePhoto = {
 
 export type PhotoSlot = keyof typeof photos;
 
-export const photos: {
-  /** Sits behind the hero, under the navy wash. Decorative. */
-  heroBackground: SitePhoto | null;
-  /** Fills the empty left column of the About section. Meaningful — needs real alt text. */
-  aboutPortrait: SitePhoto | null;
-  /** Sits behind the closing call to action. Decorative. */
-  ctaBackground: SitePhoto | null;
-} = {
+export const photos: Record<
+  | "heroBackground"
+  | "aboutPortrait"
+  | "ctaBackground"
+  | "contactOffice"
+  | "categoryIndividuals"
+  | "categoryBusinesses"
+  | "categoryTaxProblems",
+  SitePhoto | null
+> = {
+  /** Behind the homepage hero, under the engraving. Decorative. → hero-desk.jpg */
   heroBackground: null,
+  /** The About page's opening image. Meaningful — needs real alt text. → office-interior.jpg */
   aboutPortrait: null,
+  /** Behind the closing call to action. Decorative. → ledger-edges.jpg */
   ctaBackground: null,
+  /** The Contact page. Meaningful — needs real alt text. → reception.jpg */
+  contactOffice: null,
+  /** /services/individuals. → kitchen-table.jpg */
+  categoryIndividuals: null,
+  /** /services/businesses. → back-office.jpg */
+  categoryBusinesses: null,
+  /** /services/tax-problems. → envelopes.jpg */
+  categoryTaxProblems: null,
 };
 
 /** Every credit that is actually in use, de-duplicated, for the footer. */

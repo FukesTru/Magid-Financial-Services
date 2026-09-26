@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { Engraving } from "@/components/ui/Engraving";
 import { Reveal } from "@/components/ui/Reveal";
 import { site } from "@/lib/site";
 
@@ -13,8 +14,22 @@ export function TrustBar() {
     <section
       aria-label="Credentials"
       data-surface="dark"
-      className="border-y border-line bg-navy-deep"
+      className="relative isolate overflow-hidden border-y border-line bg-navy-deep"
     >
+      {/* The cheque-border relative of the rosette. Its two sine components
+          use whole numbers of cycles across the asset, so the phase at each
+          end matches and it tiles horizontally without a seam. */}
+      <Engraving
+        variant="band"
+        className="inset-0 -z-10 h-full w-full text-brass opacity-[0.11]"
+        style={{
+          maskSize: "auto 150%",
+          maskRepeat: "repeat-x",
+          WebkitMaskSize: "auto 150%",
+          WebkitMaskRepeat: "repeat-x",
+        }}
+      />
+
       <Container className="py-7">
         <Reveal y={12}>
           <div className="flex flex-col items-center gap-5 text-center lg:flex-row lg:justify-between lg:text-left">

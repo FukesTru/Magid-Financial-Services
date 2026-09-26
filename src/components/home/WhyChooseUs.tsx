@@ -1,4 +1,5 @@
 import { ArrowIcon, ButtonLink } from "@/components/ui/Button";
+import { Engraving } from "@/components/ui/Engraving";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -6,7 +7,18 @@ import { valueProps } from "@/lib/site";
 
 export function WhyChooseUs() {
   return (
-    <Section tone="navy" ariaLabelledBy="why-heading">
+    <Section
+      tone="navy"
+      ariaLabelledBy="why-heading"
+      className="isolate overflow-hidden"
+    >
+      {/* Third beat in the engraving rhythm: the hero crops its rosette off the
+          right edge, this one off the left, and the closing CTA centres it. */}
+      <Engraving
+        variant="rosette"
+        className="top-1/2 left-[-40%] -z-10 aspect-square w-[95%] -translate-y-1/2 text-brass opacity-[0.10] lg:left-[-24%] lg:w-[52%]"
+      />
+
       <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <Reveal>
