@@ -55,19 +55,30 @@ they cannot be downloaded here. Nothing in the code is waiting on them: every
 slot in `src/lib/images.ts` is `null`, and a null slot renders its section as
 it looks today.
 
-To add them: download each from the Higgsfield project, save it into
-`public/images/` under the filename below, and fill in the matching slot in
-`src/lib/images.ts`.
+**Adding them takes no code change.** Download each from the Higgsfield
+project and save it into `public/images/` under the filename below. Each slot
+looks for its basename with any of `.jpg`, `.jpeg`, `.png` or `.webp` and
+reads the real dimensions out of the file header at build time, so a
+re-export, a different crop or a format swap needs no edit either. A slot
+whose file is absent stays empty and its section renders as it does today, so
+adding them one at a time is fine.
 
-| Filename | Slot | Size | Subject |
-| --- | --- | --- | --- |
-| `hero-desk.jpg` | `heroBackground` | 2688×1520 | Walnut desk before dawn, banker's lamp, low-key |
-| `office-interior.jpg` | `aboutPortrait` | 2336×1744 | Small office, sash window, wall of archival files |
-| `ledger-edges.jpg` | `ctaBackground` | 2688×1152 | Macro of stacked paper edges and ledger spines |
-| `reception.jpg` | `contactOffice` | 2336×1744 | Reception corner, waiting chairs, blind light |
-| `kitchen-table.jpg` | `categoryIndividuals` | 2336×1744 | Family kitchen table, coffee, reading glasses |
-| `back-office.jpg` | `categoryBusinesses` | 2336×1744 | Owner-run business back office, counter, crates |
-| `envelopes.jpg` | `categoryTaxProblems` | 2336×1744 | Unopened official envelopes, single shaft of light |
+| Filename | Appears on | Subject |
+| --- | --- | --- |
+| `hero-desk` | Homepage hero | Walnut desk before dawn, banker's lamp, low-key |
+| `office-interior` | About | Small office, sash window, wall of archival files |
+| `ledger-edges` | Closing call to action | Macro of stacked paper edges and ledger spines |
+| `reception` | Contact | Reception corner, waiting chairs, blind light |
+| `kitchen-table` | /services/individuals | Family kitchen table, coffee, reading glasses |
+| `back-office` | /services/businesses | Owner-run business back office, counter, crates |
+| `envelopes` | /services/tax-problems | Unopened official envelopes, single shaft of light |
+
+Alt text for each lives in `src/lib/images.ts`. It describes what is in the
+frame and deliberately stops short of naming whose desk or office it is —
+this is commissioned atmosphere, not documentary photography of the firm's
+premises, and alt text is not the place to blur that line. If the firm wants
+About and Contact to show *their* office, those two want real photographs;
+the rest work fine as atmosphere.
 
 ### What the prompts deliberately exclude
 

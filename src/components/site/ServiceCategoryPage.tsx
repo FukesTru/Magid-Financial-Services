@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { ClosingCta } from "@/components/site/ClosingCta";
 import { ArrowIcon, ButtonLink } from "@/components/ui/Button";
+import { Engraving } from "@/components/ui/Engraving";
 import { Container } from "@/components/ui/Container";
 import { GoldRule } from "@/components/ui/GoldRule";
+import { PhotoBackdrop } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
+import { type PhotoSlot, photos } from "@/lib/images";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
@@ -19,12 +22,20 @@ import {
  * individual service pages. Someone arriving from a search for "payroll
  * services near me" should not have to read about debt settlement first.
  */
+/** Which photography slot dresses each category's hero. */
+const CATEGORY_PHOTO: Record<ServiceCategory, PhotoSlot> = {
+  individuals: "categoryIndividuals",
+  businesses: "categoryBusinesses",
+  resolution: "categoryTaxProblems",
+};
+
 export function ServiceCategoryPage({
   categoryKey,
 }: {
   categoryKey: ServiceCategory;
 }) {
   const category = serviceCategories.find((c) => c.key === categoryKey)!;
+  const photo = photos[CATEGORY_PHOTO[categoryKey]];
   const services = servicesByCategory(categoryKey);
   const others = serviceCategories.filter((c) => c.key !== categoryKey);
 
@@ -33,6 +44,11 @@ export function ServiceCategoryPage({
       <section
         data-surface="dark"
         className="relative isolate overflow-hidden bg-navy pt-36 pb-16 sm:pt-44 sm:pb-20">
+        {photo && <PhotoBackdrop photo={photo} priority />}
+        <Engraving
+          variant="rosette"
+          className="top-1/2 right-[-22%] -z-20 aspect-square w-[110%] -translate-y-1/2 text-brass opacity-[0.11] lg:w-[54%]"
+        />
         <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
         <Container>
           <Reveal>

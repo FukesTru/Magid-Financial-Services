@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
+import { Engraving } from "@/components/ui/Engraving";
 import { GoldRule } from "@/components/ui/GoldRule";
 import { Reveal } from "@/components/ui/Reveal";
 import { LeadForm } from "@/components/site/LeadForm";
+import { PhotoBackdrop } from "@/components/ui/Photo";
+import { photos } from "@/lib/images";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,6 +21,13 @@ export default function ContactPage() {
     <section
         data-surface="dark"
         className="relative isolate overflow-hidden bg-navy pt-36 pb-24 sm:pt-44 sm:pb-28">
+      {photos.contactOffice && (
+        <PhotoBackdrop photo={photos.contactOffice} priority />
+      )}
+      <Engraving
+        variant="rosette"
+        className="top-1/2 right-[-24%] -z-20 aspect-square w-[110%] -translate-y-1/2 text-brass opacity-[0.11] lg:w-[50%]"
+      />
       <div aria-hidden="true" className="warm-wash absolute inset-0 -z-10" />
 
       <Container>
