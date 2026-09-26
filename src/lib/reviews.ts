@@ -35,11 +35,6 @@ export const reviews: Review[] = [
   },
   {
     quote:
-      "I never been disappointed - have been with them for many years.",
-    name: "Katya Fish",
-  },
-  {
-    quote:
       "Tetiana Radko helped me with filing personal and business taxes. She answered all my questions. Professional and fast. Very nice team. I highly recommend them. A pleasant experience.",
     name: "Oleksandr Khimich",
   },

@@ -17,6 +17,25 @@ import { googleReviewsUrl, reviews } from "@/lib/reviews";
 export function Testimonials() {
   if (reviews.length === 0) return null;
 
+  /*
+   * The grid draws its hairline seams by showing a `line`-coloured parent
+   * through one-pixel gaps, which means an unfilled cell in the last row is
+   * not empty space — it is a visible block of seam colour, reading as a hole
+   * punched in the grid.
+   *
+   * Reviews come and go, so rather than assuming a count that happens to
+   * divide evenly, the last card widens to absorb whatever the remainder
+   * leaves. Written as whole class names so Tailwind's scanner finds them.
+   */
+  const last = reviews.length - 1;
+  const fillSm = reviews.length % 2 === 1 ? "sm:col-span-2" : "";
+  const fillLg =
+    reviews.length % 3 === 2
+      ? "lg:col-span-2"
+      : reviews.length % 3 === 1
+        ? "lg:col-span-3"
+        : "";
+
   return (
     <Section tone="paperRaised" ariaLabelledBy="testimonials-heading">
       <Reveal>
@@ -36,7 +55,9 @@ export function Testimonials() {
             key={review.name + i}
             delay={(i % 3) * 0.07}
             y={18}
-            className="bg-card"
+            className={
+              i === last ? `bg-card ${fillSm} ${fillLg}` : "bg-card"
+            }
           >
             <figure className="flex h-full flex-col p-8">
               <Stars />
