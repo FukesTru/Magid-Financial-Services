@@ -67,11 +67,22 @@ function epitrochoid({ r1, r2, ratio, phase, steps, cx, cy, squash = 1 }) {
 }
 
 function svg(viewBox, body, width) {
-  // stroke="currentColor" keeps the palette in CSS: one asset serves the brass
-  // watermark on navy and the ink watermark on bone.
+  // Stroked in WHITE, deliberately.
+  //
+  // These are consumed as CSS masks, where the file's own colour never reaches
+  // the page — the paint comes from the element's background. What the colour
+  // decides is whether the stroke survives masking at all, and that depends on
+  // how the browser reads the mask:
+  //
+  //   alpha mask      — opaque shows.        black works, white works
+  //   luminance mask  — bright shows.        black VANISHES, white works
+  //
+  // `currentColor` resolves to black inside the SVG's own isolated document,
+  // so it renders under an alpha mask and disappears entirely under a
+  // luminance one. White is opaque AND fully bright, so it survives both.
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" fill="none" ` +
-    `stroke="currentColor" stroke-width="${width}">${body}</svg>`
+    `stroke="#fff" stroke-width="${width}">${body}</svg>`
   );
 }
 

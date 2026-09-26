@@ -10,8 +10,9 @@ export type EngravingVariant = "rosette" | "rosette-fine" | "band" | (string & {
  * A guilloche watermark.
  *
  * Purely decorative, so it is hidden from assistive technology and never
- * participates in layout. Colour comes from `currentColor` via the `engrave`
- * utility — set it with a text colour class and dial it with `opacity`.
+ * participates in layout. The asset supplies the shape; the colour comes from
+ * this element via the `engrave` utility — set it with a text colour class and
+ * dial it with `opacity`.
  */
 export function Engraving({
   variant,

@@ -195,12 +195,14 @@
 /*
  * Guilloche engraving, painted through a CSS mask.
  *
- * The asset strokes itself in `currentColor`, but an external SVG loaded via
- * <img> renders in its own isolated document where `currentColor` resolves to
- * black — nothing the page says about colour reaches inside it. Used as a mask
- * the relationship inverts: the strokes become the alpha channel and the paint
- * comes from this element's own background, so one cached file serves the
- * brass watermark on navy and the ink watermark on bone.
+ * An external SVG loaded via <img> renders in its own isolated document, so
+ * nothing the page says about colour reaches inside it. As a mask the
+ * relationship inverts: the file supplies only a shape, and the paint comes
+ * from this element's own background — so one cached asset serves the brass
+ * watermark on navy and the ink watermark on bone.
+ *
+ * The assets are stroked white so they survive being read as either an alpha
+ * mask or a luminance mask; see scripts/generate-engravings.mjs.
  */
 @utility engrave {
   -webkit-mask-image: var(--engrave-src);

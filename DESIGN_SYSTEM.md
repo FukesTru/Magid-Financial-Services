@@ -178,11 +178,14 @@ Use it through `ui/Engraving.tsx`:
 | `motif-<service-slug>` | Service cards, one per service |
 
 **It is painted as a CSS mask, not an `<img>`.** An external SVG loaded through
-`<img>` renders in its own isolated document, where `currentColor` resolves to
-black and nothing the page says about colour reaches inside it. As a mask the
-strokes become the alpha channel and the paint comes from the element's own
-colour — so one cached file serves the brass watermark on navy and the ink
-watermark on bone. That is what the `engrave` utility sets up.
+`<img>` renders in its own isolated document, so nothing the page says about
+colour reaches inside it. As a mask the file supplies only a shape and the
+paint comes from the element — one cached asset serves the brass watermark on
+navy and the ink watermark on bone. That is what the `engrave` utility sets up.
+
+The assets are stroked **white**, not `currentColor`. A mask can be read as
+alpha (opaque shows) or luminance (bright shows); black survives the first and
+vanishes under the second, white survives both. Keep it white.
 
 **Rules**
 
