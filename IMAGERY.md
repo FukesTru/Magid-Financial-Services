@@ -55,23 +55,30 @@ they cannot be downloaded here. Nothing in the code is waiting on them: every
 slot in `src/lib/images.ts` is `null`, and a null slot renders its section as
 it looks today.
 
-**Adding them takes no code change.** Download each from the Higgsfield
-project and save it into `public/images/` under the filename below. Each slot
-looks for its basename with any of `.jpg`, `.jpeg`, `.png` or `.webp` and
-reads the real dimensions out of the file header at build time, so a
-re-export, a different crop or a format swap needs no edit either. A slot
-whose file is absent stays empty and its section renders as it does today, so
-adding them one at a time is fine.
+**Adding them takes no code change.** Save each file into `public/images/`
+under the name in the first column, keeping whatever extension it downloads as
+(`.png`, `.jpg`, `.jpeg` and `.webp` all resolve). Each slot reads the real
+dimensions out of the file header at build time, so a re-export or a different
+crop needs no edit either. A slot whose file is absent renders as the site does
+today, so adding them one at a time is fine.
 
-| Filename | Appears on | Subject |
-| --- | --- | --- |
-| `hero-desk` | Homepage hero | Walnut desk before dawn, banker's lamp, low-key |
-| `office-interior` | About | Small office, sash window, wall of archival files |
-| `ledger-edges` | Closing call to action | Macro of stacked paper edges and ledger spines |
-| `reception` | Contact | Reception corner, waiting chairs, blind light |
-| `kitchen-table` | /services/individuals | Family kitchen table, coffee, reading glasses |
-| `back-office` | /services/businesses | Owner-run business back office, counter, crates |
-| `envelopes` | /services/tax-problems | Unopened official envelopes, single shaft of light |
+They can be downloaded either from the Higgsfield app — the project
+**"Magid Financial Services — site imagery"** — or directly from the links
+below.
+
+| Save as | Appears on | Size | Download |
+| --- | --- | --- | --- |
+| `hero-desk` | Homepage hero | 2688x1520 | [hf_20260926_171153_0a3...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171153_0a339728-65df-42d6-9f5c-e7776d95ad8d.png) |
+| `office-interior` | About | 2336x1744 | [hf_20260926_171152_c99...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171152_c9929209-c39c-4133-b4ce-a9bd9656a444.png) |
+| `ledger-edges` | Closing call to action | 2688x1152 | [hf_20260926_171051_2da...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171051_2da3d6a6-690e-4d85-9ff2-2696462e2505.png) |
+| `reception` | Contact | 2336x1744 | [hf_20260926_171051_727...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171051_72773998-7417-49cb-94e3-9d329c400f45.png) |
+| `kitchen-table` | /services/individuals | 2336x1744 | [hf_20260926_171404_626...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171404_626fdbc5-d32c-49f9-8f9c-08f1c0118d2e.png) |
+| `back-office` | /services/businesses | 2336x1744 | [hf_20260926_171051_5a7...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171051_5a73adad-77c9-4282-b7aa-9fe23e13eb6c.png) |
+| `envelopes` | /services/tax-problems | 2336x1744 | [hf_20260926_171404_fea...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171404_fea2566f-7647-40c3-9052-aa283fb84a70.png) |
+
+These links point at the generation CDN, which is not somewhere a client site
+should depend on long-term — that is exactly why the files belong in
+`public/images/` rather than being referenced remotely.
 
 Alt text for each lives in `src/lib/images.ts`. It describes what is in the
 frame and deliberately stops short of naming whose desk or office it is —
