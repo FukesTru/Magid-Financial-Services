@@ -14,7 +14,7 @@ export function ClosingCta() {
       data-surface="dark"
       className="relative isolate overflow-hidden border-t border-line bg-navy-deep py-24 sm:py-28 lg:py-32"
     >
-      {photos.ctaBackground && <PhotoBackdrop photo={photos.ctaBackground} />}
+      {photos.ctaBackground && <PhotoBackdrop photo={photos.ctaBackground} focus="center" />}
 
       {/* Centred behind the copy, so the call to action reads as though it is
           stamped on the page rather than printed over a flat fill. */}

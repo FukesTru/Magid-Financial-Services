@@ -44,48 +44,55 @@ Regenerate with:
 node scripts/generate-engravings.mjs
 ```
 
-## 2. Photographs — generated, not yet in the repo
+## 2. Photographs — in the repo
 
-Seven photographs have been generated and are in the Higgsfield workspace
-under the project **"Magid Financial Services — site imagery"**.
+Seven photographs live in `public/images/`. Each slot in `src/lib/images.ts`
+resolves by looking for its basename with any of `.jpg`, `.jpeg`, `.png` or
+`.webp` and reading the real dimensions out of the file header, so replacing
+one is a matter of dropping in a new file under the same name — no code
+change, and a re-export or a different crop needs no edit either. A slot whose
+file is removed renders as the section does without photography, carried by
+the engraving.
 
-They are not committed because this environment's egress policy blocks the
-Higgsfield CDN (`d8j0ntlcm91z4.cloudfront.net` answers 403 to CONNECT), so
-they cannot be downloaded here. Nothing in the code is waiting on them: every
-slot in `src/lib/images.ts` is `null`, and a null slot renders its section as
-it looks today.
+| File | Appears on | Treatment |
+| --- | --- | --- |
+| `hero-desk` | Homepage hero | Side scrim, mirrored |
+| `office-interior` | Homepage About section, About hero | Side scrim, wide on the hero |
+| `ledger-edges` | Closing call to action, every page | Centre scrim |
+| `reception` | Contact hero | Side scrim, wide |
+| `kitchen-table` | /services/individuals | Side scrim, wide |
+| `back-office` | /services/businesses | Side scrim, wide |
+| `envelopes` | /services/tax-problems | Side scrim, wide |
 
-**Adding them takes no code change.** Save each file into `public/images/`
-under the name in the first column, keeping whatever extension it downloads as
-(`.png`, `.jpg`, `.jpeg` and `.webp` all resolve). Each slot reads the real
-dimensions out of the file header at build time, so a re-export or a different
-crop needs no edit either. A slot whose file is absent renders as the site does
-today, so adding them one at a time is fine.
+### How the backdrop is balanced
 
-They can be downloaded either from the Higgsfield app — the project
-**"Magid Financial Services — site imagery"** — or directly from the links
-below.
+A photograph has to be genuinely visible or it is bytes for nothing, and the
+text over it has to stay readable. An earlier version was tuned against a
+deliberately near-white test image and stacked three darkening layers to
+survive it; against this photography, which is low-key and mostly shadow, that
+combination erased the images entirely.
 
-| Save as | Appears on | Size | Download |
-| --- | --- | --- | --- |
-| `hero-desk` | Homepage hero | 2688x1520 | [hf_20260926_171153_0a3...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171153_0a339728-65df-42d6-9f5c-e7776d95ad8d.png) |
-| `office-interior` | About | 2336x1744 | [hf_20260926_171152_c99...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171152_c9929209-c39c-4133-b4ce-a9bd9656a444.png) |
-| `ledger-edges` | Closing call to action | 2688x1152 | [hf_20260926_171051_2da...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171051_2da3d6a6-690e-4d85-9ff2-2696462e2505.png) |
-| `reception` | Contact | 2336x1744 | [hf_20260926_171051_727...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171051_72773998-7417-49cb-94e3-9d329c400f45.png) |
-| `kitchen-table` | /services/individuals | 2336x1744 | [hf_20260926_171404_626...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171404_626fdbc5-d32c-49f9-8f9c-08f1c0118d2e.png) |
-| `back-office` | /services/businesses | 2336x1744 | [hf_20260926_171051_5a7...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171051_5a73adad-77c9-4282-b7aa-9fe23e13eb6c.png) |
-| `envelopes` | /services/tax-problems | 2336x1744 | [hf_20260926_171404_fea...](https://d8j0ntlcm91z4.cloudfront.net/user_3JQKh2gid98NN8aKLj5Y7jhUCzf/hf_20260926_171404_fea2566f-7647-40c3-9052-aa283fb84a70.png) |
+So the darkening is positional rather than global. The photo plays at near
+full strength and the navy is spent only where text actually sits:
 
-These links point at the generation CDN, which is not somewhere a client site
-should depend on long-term — that is exactly why the files belong in
-`public/images/` rather than being referenced remotely.
+- **`focus="side"`** — copy in a left column, photo owning the right.
+- **`focus="center"`** — copy centred, so the scrim is a radial pool instead.
+- **`scrim="wide"`** — for page heroes, whose copy runs to `max-w-3xl` and
+  reaches well past where the homepage hero's column stops.
+- **`flip`** — mirrors the image. The CSS mask lives in the element's own
+  coordinate space and the flip is applied to the result, so the mask
+  direction has to be reversed to cancel it; `Photo.tsx` does that. The hero
+  uses it because the lamp sits on the text side of the original frame.
 
-Alt text for each lives in `src/lib/images.ts`. It describes what is in the
-frame and deliberately stops short of naming whose desk or office it is —
-this is commissioned atmosphere, not documentary photography of the firm's
-premises, and alt text is not the place to blur that line. If the firm wants
-About and Contact to show *their* office, those two want real photographs;
-the rest work fine as atmosphere.
+Re-measure contrast after touching any stop here. Every text/background pair
+across eight routes currently passes WCAG AA, measured against the actually
+painted pixels at the glyph line boxes rather than element boxes.
+
+Alt text lives in `src/lib/images.ts`. It describes what is in the frame and
+deliberately stops short of naming whose desk or office it is — this is
+commissioned atmosphere, not documentary photography of the firm's premises.
+If About and Contact should show *their* office, those two want real
+photographs.
 
 ### What the prompts deliberately exclude
 

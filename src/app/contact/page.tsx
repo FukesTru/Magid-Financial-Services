@@ -22,7 +22,7 @@ export default function ContactPage() {
         data-surface="dark"
         className="relative isolate overflow-hidden bg-navy pt-36 pb-24 sm:pt-44 sm:pb-28">
       {photos.contactOffice && (
-        <PhotoBackdrop photo={photos.contactOffice} priority />
+        <PhotoBackdrop photo={photos.contactOffice} priority scrim="wide" />
       )}
       <Engraving
         variant="rosette"

@@ -44,7 +44,7 @@ export function ServiceCategoryPage({
       <section
         data-surface="dark"
         className="relative isolate overflow-hidden bg-navy pt-36 pb-16 sm:pt-44 sm:pb-20">
-        {photo && <PhotoBackdrop photo={photo} priority />}
+        {photo && <PhotoBackdrop photo={photo} priority scrim="wide" />}
         <Engraving
           variant="rosette"
           className="top-1/2 right-[-22%] -z-20 aspect-square w-[110%] -translate-y-1/2 text-brass opacity-[0.11] lg:w-[54%]"

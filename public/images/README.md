@@ -1,6 +1,7 @@
-# Photographs go here
+# Photographs
 
-Drop a file in this folder and it appears on the site. No code change.
+The seven photographs the site uses live here. Replacing one is a matter of
+dropping in a new file under the same basename — no code change.
 
 Each slot looks for its basename with any of `.jpg`, `.jpeg`, `.png` or
 `.webp`, and reads the real pixel dimensions out of the file header at build
